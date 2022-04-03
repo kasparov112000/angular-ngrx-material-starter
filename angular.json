@@ -23,7 +23,6 @@
             "main": "projects/angular-ngrx-material-starter/src/main.ts",
             "polyfills": "projects/angular-ngrx-material-starter/src/polyfills.ts",
             "tsConfig": "projects/angular-ngrx-material-starter/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/angular-ngrx-material-starter/src/favicon.ico",
               "projects/angular-ngrx-material-starter/src/assets"
@@ -32,7 +31,13 @@
               "projects/angular-ngrx-material-starter/src/styles-app-loading.scss",
               "projects/angular-ngrx-material-starter/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -77,7 +82,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
