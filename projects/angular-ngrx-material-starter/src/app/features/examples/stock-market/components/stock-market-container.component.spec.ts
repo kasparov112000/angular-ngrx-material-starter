@@ -1,6 +1,6 @@
 import { By } from '@angular/platform-browser';
 import { HttpErrorResponse } from '@angular/common/http';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { MemoizedSelector } from '@ngrx/store';
@@ -42,7 +42,7 @@ describe('StockMarketContainerComponent', () => {
     fixture.debugElement.query(By.css('mat-card fa-icon[icon="caret-down"]'));
 
   describe('given component booted', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           SharedModule,

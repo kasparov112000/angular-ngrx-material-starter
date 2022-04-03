@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { UserComponent } from './user.component';
 import { SharedModule } from '../../../../shared/shared.module';
@@ -10,7 +10,7 @@ describe('UserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
       providers: [UserService],

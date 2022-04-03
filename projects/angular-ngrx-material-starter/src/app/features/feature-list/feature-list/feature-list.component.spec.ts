@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -10,7 +10,7 @@ describe('FeatureListComponent', () => {
   let component: FeatureListComponent;
   let fixture: ComponentFixture<FeatureListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
       declarations: [FeatureListComponent]
