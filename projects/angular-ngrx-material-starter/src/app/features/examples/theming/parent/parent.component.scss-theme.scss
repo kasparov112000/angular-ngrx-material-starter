@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import '~@angular/material/theming';
 
 @mixin anms-parent-component-theme($theme) {
@@ -8,10 +9,10 @@
       > .row {
         > .col-md-6 {
           > .example {
-            border-color: mat-color($accent);
+            border-color: mat.get-color-from-palette($accent);
 
             > h1 {
-              color: mat-color($accent);
+              color: mat.get-color-from-palette($accent);
             }
           }
         }

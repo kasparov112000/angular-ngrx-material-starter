@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import 'styles-variables';
 
 @import '~bootstrap/scss/bootstrap-reboot';
@@ -6,7 +7,7 @@
 
 @import '~@angular/material/theming';
 
-@include mat-core();
+@include mat.core();
 
 @import './themes/default-theme';
 @import './themes/light-theme';
@@ -38,21 +39,21 @@
 }
 
 .default-theme {
-  @include angular-material-theme($anms-theme);
+  @include mat.all-component-themes($anms-theme);
   @include custom-components-theme($anms-theme);
 }
 
 .light-theme {
-  @include angular-material-theme($anms-light-theme);
+  @include mat.all-component-themes($anms-light-theme);
   @include custom-components-theme($anms-light-theme);
 }
 
 .black-theme {
-  @include angular-material-theme($anms-black-theme);
+  @include mat.all-component-themes($anms-black-theme);
   @include custom-components-theme($anms-black-theme);
 }
 
 .nature-theme {
-  @include angular-material-theme($anms-nature-theme);
+  @include mat.all-component-themes($anms-nature-theme);
   @include custom-components-theme($anms-nature-theme);
 }
