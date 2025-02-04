@@ -1,8 +1,8 @@
 @use '@angular/material' as mat;
 @import 'styles-variables';
 
-@import '~bootstrap/scss/bootstrap-reboot';
-@import '~bootstrap/scss/bootstrap-grid';
+@import 'bootstrap/scss/bootstrap-reboot';
+@import 'bootstrap/scss/bootstrap-grid';
 @import 'styles-reset';
 
 @import '@angular/material/theming';
