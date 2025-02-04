@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { AppState } from '../core.state';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class AuthGuardService  {
   constructor(private store: Store<AppState>) {}
 
   canActivate(): Observable<boolean> {
