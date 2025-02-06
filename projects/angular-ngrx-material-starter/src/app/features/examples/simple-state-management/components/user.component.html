@@ -19,7 +19,7 @@
               src="https://source.unsplash.com/200x200/?{{ user.username }}"
             />
             <mat-card-title>{{ user.name }} {{ user.surname }}</mat-card-title>
-            <mat-card-subtitle>@{{ user.username }}</mat-card-subtitle>
+            <mat-card-subtitle>&#64;{{ user.username }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-actions>
             <button mat-button (click)="editUser(user)">Edit</button>
@@ -93,7 +93,7 @@
       <p>{{ 'anms.examples.simple-state-management.text2' | translate }}</p>
       <p>
         {{ 'anms.examples.simple-state-management.text3' | translate }}
-        <code>@angular-extensions/model</code>
+        <code>&#64;angular-extensions/model</code>
       </p>
       <p>{{ 'anms.examples.simple-state-management.text4' | translate }}</p>
       <p>
@@ -104,8 +104,8 @@
       </p>
       <p>
         {{ 'anms.examples.simple-state-management.text7' | translate }}
-        <code>ng add @angular-extensions/model</code> &
-        <code>ng g @angular-extensions/model:model examples/user --items</code>
+        <code>ng add &#64;angular-extensions/model</code> &
+        <code>ng g &#64;angular-extensions/model:model examples/user --items</code>
       </p>
     </div>
   </div>
