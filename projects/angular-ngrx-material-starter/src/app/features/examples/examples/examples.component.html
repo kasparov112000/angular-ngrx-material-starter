@@ -1,4 +1,4 @@
-<nav mat-tab-nav-bar class="d-none d-sm-flex">
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" class="d-none d-sm-flex">
   <a mat-tab-link
      *ngFor="let e of examples"
      [routerLink]="e.link"
@@ -9,17 +9,19 @@
   </a>
 </nav>
 
-<nav class="nav-responsive d-sm-none d-flex justify-content-center">
-    <mat-select [placeholder]="'anms.examples.title' | translate" [value]="'todos'">
-      <mat-option *ngFor="let e of examples"
-        [value]="e"
-        [routerLink]="e.link"
-        [disabled]="e.auth && !(isAuthenticated$ | async)">
-          {{e.label | translate}}
-      </mat-option>
-    </mat-select>
-</nav>
+<mat-tab-nav-panel #tabPanel>
+  <nav class="nav-responsive d-sm-none d-flex justify-content-center">
+      <mat-select [placeholder]="'anms.examples.title' | translate" [value]="'todos'">
+        <mat-option *ngFor="let e of examples"
+          [value]="e"
+          [routerLink]="e.link"
+          [disabled]="e.auth && !(isAuthenticated$ | async)">
+            {{e.label | translate}}
+        </mat-option>
+      </mat-select>
+  </nav>
 
-<div [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.path">
-  <router-outlet #o="outlet"></router-outlet>
-</div>
+  <div [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.path">
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
+</mat-tab-nav-panel>
