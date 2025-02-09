@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
 import { UntypedFormBuilder } from '@angular/forms';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -19,6 +19,13 @@ import { selectSelectedBook, selectAllBooks } from '../books.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CrudComponent {
+  /*
+   *
+   * @INJECT
+   */
+  public store = inject(Store<State>);
+  public fb = inject(UntypedFormBuilder);
+
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
   bookFormGroup = this.fb.group(CrudComponent.createBook());
@@ -27,11 +34,7 @@ export class CrudComponent {
 
   isEditing: boolean;
 
-  constructor(
-    public store: Store<State>,
-    public fb: UntypedFormBuilder,
-    private router: Router
-  ) {}
+  constructor(private router: Router) {}
 
   static createBook(): Book {
     return {

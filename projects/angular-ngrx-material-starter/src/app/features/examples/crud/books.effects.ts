@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap, withLatestFrom } from 'rxjs/operators';
@@ -13,6 +13,15 @@ export const BOOKS_KEY = 'EXAMPLES.BOOKS';
 
 @Injectable()
 export class BooksEffects {
+  
+  /*
+   *
+   * @INJECT
+   */
+  private actions$ = inject(Actions);
+  private store = inject(Store<State>);
+  private  localStorageService = inject(LocalStorageService);
+
   persistBooks = createEffect(
     () =>
       this.actions$.pipe(
@@ -25,9 +34,5 @@ export class BooksEffects {
     { dispatch: false }
   );
 
-  constructor(
-    private actions$: Actions,
-    private store: Store<State>,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor() {}
 }

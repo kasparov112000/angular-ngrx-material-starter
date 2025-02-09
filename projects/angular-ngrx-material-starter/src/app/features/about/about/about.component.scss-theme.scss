@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
+// @import '@angular/material/theming';
 
 @mixin anms-about-component-theme($theme) {
   $primary: map-get($theme, primary);

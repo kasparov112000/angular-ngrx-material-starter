@@ -1,4 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  inject
+} from '@angular/core';
 import { Validators, UntypedFormBuilder } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { filter, debounceTime, take } from 'rxjs/operators';
@@ -21,6 +26,15 @@ import { Form } from '../form.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent implements OnInit {
+  /*
+   *
+   * @INJECT
+   */
+  private store = inject(Store);
+  private fb = inject(UntypedFormBuilder);
+  private translate = inject(TranslateService);
+  private notificationService = inject(NotificationService);
+
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
   form = this.fb.group({
@@ -43,12 +57,7 @@ export class FormComponent implements OnInit {
 
   formValueChanges$: Observable<Form>;
 
-  constructor(
-    private fb: UntypedFormBuilder,
-    private store: Store,
-    private translate: TranslateService,
-    private notificationService: NotificationService
-  ) {}
+  constructor() {}
 
   ngOnInit() {
     this.formValueChanges$ = this.form.valueChanges.pipe(
