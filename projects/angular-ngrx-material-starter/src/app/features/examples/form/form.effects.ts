@@ -26,7 +26,7 @@ export class FormEffects {
           this.localStorageService.setItem(FORM_KEY, { form: action.form })
         )
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   constructor() {}

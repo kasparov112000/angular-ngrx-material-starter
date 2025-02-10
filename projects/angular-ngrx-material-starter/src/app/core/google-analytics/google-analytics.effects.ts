@@ -14,7 +14,7 @@ export class GoogleAnalyticsEffects {
           (<any>window).ga('send', 'pageview');
         })
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   constructor(private router: Router) {}

@@ -31,7 +31,7 @@ export class BooksEffects {
           this.localStorageService.setItem(BOOKS_KEY, booksState)
         )
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   constructor() {}

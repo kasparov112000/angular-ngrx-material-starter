@@ -87,7 +87,7 @@ export class SettingsEffects {
           this.localStorageService.setItem(SETTINGS_KEY, settings)
         )
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   updateRouteAnimationType = createEffect(
@@ -114,7 +114,7 @@ export class SettingsEffects {
           )
         )
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   updateTheme = createEffect(
@@ -133,7 +133,7 @@ export class SettingsEffects {
           classList.add(effectiveTheme);
         })
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   setTranslateServiceLanguage = createEffect(
@@ -143,7 +143,7 @@ export class SettingsEffects {
         distinctUntilChanged(),
         tap((language) => this.translateService.use(language))
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   setTitle = createEffect(
@@ -161,7 +161,7 @@ export class SettingsEffects {
           );
         })
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   constructor() {}

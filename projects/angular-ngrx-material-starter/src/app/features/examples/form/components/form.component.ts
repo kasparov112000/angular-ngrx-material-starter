@@ -60,13 +60,20 @@ export class FormComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    
+    console.log("🚀 ~ FormComponent ~ ngOnInit ~ form.get('autosave').value:", this.form.get('autosave').value)
+
     this.formValueChanges$ = this.form.valueChanges.pipe(
       debounceTime(500),
       filter((form: Form) => form.autosave)
     );
     this.store
       .pipe(select(selectFormState), take(1))
-      .subscribe((form) => this.form.patchValue(form.form));
+      .subscribe((form) => {
+        
+        console.log("🚀 ~ FormComponent ~ .subscribe ~ form.form:", form.form)
+        this.form.patchValue(form.form)
+      });
   }
 
   update(form: Form) {

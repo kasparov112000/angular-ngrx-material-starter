@@ -28,7 +28,7 @@ export class AuthEffects {
           this.localStorageService.setItem(AUTH_KEY, { isAuthenticated: true })
         )
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   logout = createEffect(
@@ -42,7 +42,7 @@ export class AuthEffects {
           });
         })
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   constructor() {}

@@ -36,7 +36,7 @@ export class TodosEffects {
           this.localStorageService.setItem(TODOS_KEY, todos)
         )
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   constructor() {}

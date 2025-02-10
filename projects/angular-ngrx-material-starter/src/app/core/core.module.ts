@@ -25,7 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { environment } from '../../environments/environment';
@@ -74,6 +74,7 @@ import {
   faInstagram,
   faYoutube
 } from '@fortawesome/free-brands-svg-icons';
+import { MatSliderModule } from '@angular/material/slider';
 
 export {
   TitleService,
@@ -108,6 +109,7 @@ export function httpLoaderFactory(http: HttpClient) {
     CommonModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
 
     // material
     MatSidenavModule,
@@ -119,6 +121,7 @@ export function httpLoaderFactory(http: HttpClient) {
     MatTooltipModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatSliderModule,
 
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -153,6 +156,7 @@ export function httpLoaderFactory(http: HttpClient) {
   exports: [
     // angular
     FormsModule,
+    ReactiveFormsModule,
 
     // material
     MatSidenavModule,
@@ -164,6 +168,7 @@ export function httpLoaderFactory(http: HttpClient) {
     MatTooltipModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatSliderModule,
 
     // 3rd party
     FontAwesomeModule,
