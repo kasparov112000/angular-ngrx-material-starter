@@ -10,16 +10,17 @@
     mat-toolbar {
       color: mat.get-color-from-palette($primary, lighter);
       background-color: mat.get-color-from-palette($primary, darker);
-      span {
+
+      span{
         color: mat.get-color-from-palette($primary, lighter);
-          &:hover {
-            color: mat.get-color-from-palette($accent);
-          }
+        &:hover {
+          color: mat.get-color-from-palette($accent);
+        }
       }
       button {
         &.active {
-          color: mat.get-color-from-palette($accent, default-contrast);
-          background-color: mat.get-color-from-palette($accent);
+          color: mat.get-color-from-palette($accent);
+          background-color: mat.get-color-from-palette($accent, default-contrast);
         }
       }
 
