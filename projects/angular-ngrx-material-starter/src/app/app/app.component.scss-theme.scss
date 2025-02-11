@@ -8,6 +8,14 @@
 
   mat-sidenav-container {
     mat-toolbar {
+      color: mat.get-color-from-palette($primary, lighter);
+      background-color: mat.get-color-from-palette($primary, darker);
+      span {
+        color: mat.get-color-from-palette($primary, lighter);
+          &:hover {
+            color: mat.get-color-from-palette($accent);
+          }
+      }
       button {
         &.active {
           color: mat.get-color-from-palette($accent, default-contrast);
