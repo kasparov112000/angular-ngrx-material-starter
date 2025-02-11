@@ -1,10 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
-import {
-  HttpClientModule,
-  HttpClient,
-  HTTP_INTERCEPTORS
-} from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {
   StoreRouterConnectingModule,
   RouterStateSerializer
@@ -103,78 +99,68 @@ export function httpLoaderFactory(http: HttpClient) {
   );
 }
 
-@NgModule({
-  imports: [
-    // angular
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-
-    // material
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatMenuModule,
-    MatIconModule,
-    MatSelectModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatButtonModule,
-    MatSliderModule,
-
-    // ngrx
-    StoreModule.forRoot(reducers, { metaReducers }),
-    StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([
-      AuthEffects,
-      SettingsEffects,
-      GoogleAnalyticsEffects
-    ]),
-    environment.production
-      ? []
-      : StoreDevtoolsModule.instrument({
-          name: 'Angular NgRx Material Starter'
-        }),
-
-    // 3rd party
-    FontAwesomeModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ],
-  declarations: [],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-    { provide: ErrorHandler, useClass: AppErrorHandler },
-    { provide: RouterStateSerializer, useClass: CustomSerializer }
-  ],
-  exports: [
-    // angular
-    FormsModule,
-    ReactiveFormsModule,
-
-    // material
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatMenuModule,
-    MatIconModule,
-    MatSelectModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatButtonModule,
-    MatSliderModule,
-
-    // 3rd party
-    FontAwesomeModule,
-    TranslateModule
-  ]
-})
+@NgModule({ declarations: [],
+    exports: [
+        // angular
+        FormsModule,
+        ReactiveFormsModule,
+        // material
+        MatSidenavModule,
+        MatToolbarModule,
+        MatListModule,
+        MatMenuModule,
+        MatIconModule,
+        MatSelectModule,
+        MatTooltipModule,
+        MatSnackBarModule,
+        MatButtonModule,
+        MatSliderModule,
+        // 3rd party
+        FontAwesomeModule,
+        TranslateModule
+    ], imports: [
+        // angular
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        // material
+        MatSidenavModule,
+        MatToolbarModule,
+        MatListModule,
+        MatMenuModule,
+        MatIconModule,
+        MatSelectModule,
+        MatTooltipModule,
+        MatSnackBarModule,
+        MatButtonModule,
+        MatSliderModule,
+        // ngrx
+        StoreModule.forRoot(reducers, { metaReducers }),
+        StoreRouterConnectingModule.forRoot(),
+        EffectsModule.forRoot([
+            AuthEffects,
+            SettingsEffects,
+            GoogleAnalyticsEffects
+        ]),
+        environment.production
+            ? []
+            : StoreDevtoolsModule.instrument({
+                name: 'Angular NgRx Material Starter'
+            }),
+        // 3rd party
+        FontAwesomeModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: httpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+        { provide: ErrorHandler, useClass: AppErrorHandler },
+        { provide: RouterStateSerializer, useClass: CustomSerializer },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class CoreModule {
   constructor(
     @Optional()
