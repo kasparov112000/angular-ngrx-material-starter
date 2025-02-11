@@ -16,10 +16,11 @@ import { Todo, TodosFilter } from '../todos.model';
 import { selectTodos, selectRemoveDoneTodosDisabled } from '../todos.selectors';
 
 @Component({
-  selector: 'anms-todos',
-  templateUrl: './todos-container.component.html',
-  styleUrls: ['./todos-container.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'anms-todos',
+    templateUrl: './todos-container.component.html',
+    styleUrls: ['./todos-container.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TodosContainerComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

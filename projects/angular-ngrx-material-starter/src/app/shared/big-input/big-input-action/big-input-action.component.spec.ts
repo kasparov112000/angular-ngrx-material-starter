@@ -6,8 +6,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from '../../shared.module';
 
 @Component({
-  selector: 'anms-host-for-test',
-  template: ''
+    selector: 'anms-host-for-test',
+    template: '',
+    standalone: false
 })
 class HostComponent {
   actionHandler = () => {};

@@ -8,12 +8,13 @@ import { BehaviorSubject, of } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
-  template: `
+    template: `
     <h2 rtl>Something Yellow</h2>
     <h2 rtl>The Default (Gray)</h2>
     <h2>No Highlight</h2>
     <div rtl>Vasili</div>
-  `
+  `,
+    standalone: false
 })
 class TestComponent {}
 

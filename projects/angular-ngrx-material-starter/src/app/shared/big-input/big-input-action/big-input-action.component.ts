@@ -7,10 +7,11 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'anms-big-input-action',
-  templateUrl: './big-input-action.component.html',
-  styleUrls: ['./big-input-action.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'anms-big-input-action',
+    templateUrl: './big-input-action.component.html',
+    styleUrls: ['./big-input-action.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class BigInputActionComponent {
   @Input()

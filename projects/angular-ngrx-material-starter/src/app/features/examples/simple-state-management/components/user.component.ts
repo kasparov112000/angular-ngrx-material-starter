@@ -13,10 +13,11 @@ import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../../core/animations/route.ani
 import { User, UserService } from '../user.service';
 
 @Component({
-  selector: 'anms-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'anms-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class UserComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

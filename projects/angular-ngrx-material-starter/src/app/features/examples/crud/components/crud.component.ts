@@ -13,10 +13,11 @@ import { actionBooksDeleteOne, actionBooksUpsertOne } from '../books.actions';
 import { selectSelectedBook, selectAllBooks } from '../books.selectors';
 
 @Component({
-  selector: 'anms-crud',
-  templateUrl: './crud.component.html',
-  styleUrls: ['./crud.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'anms-crud',
+    templateUrl: './crud.component.html',
+    styleUrls: ['./crud.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CrudComponent {
   /*

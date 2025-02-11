@@ -20,10 +20,11 @@ import { selectFormState } from '../form.selectors';
 import { Form } from '../form.model';
 
 @Component({
-  selector: 'anms-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'anms-form',
+    templateUrl: './form.component.html',
+    styleUrls: ['./form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FormComponent implements OnInit {
   /*
