@@ -36,7 +36,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-builders/custom-webpack": "^18.0.0",
+    "@angular-builders/custom-webpack": "^19.0.0",
     "@angular-extensions/elements": "^16.0.0",
     "@angular-extensions/model": "^12.0.0",
     "@angular/animations": "^19.1.5",
