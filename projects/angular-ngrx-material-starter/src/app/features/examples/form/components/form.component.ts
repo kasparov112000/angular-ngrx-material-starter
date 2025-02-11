@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { Validators, UntypedFormBuilder } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { filter, debounceTime, take } from 'rxjs/operators';
+import { filter, debounceTime, take, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
@@ -61,22 +61,30 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     
-    console.log("🚀 ~ FormComponent ~ ngOnInit ~ form.get('autosave').value:", this.form.get('autosave').value)
 
+    // this.formValueChanges$ = this.form.valueChanges.pipe(
+    //   debounceTime(500),
+    //   filter((form: Form) => form.autosave)
+    // );
     this.formValueChanges$ = this.form.valueChanges.pipe(
       debounceTime(500),
-      filter((form: Form) => form.autosave)
+      filter((form: Form) => form.autosave),
+      tap((form: Form) => { // Use tap to dispatch the action
+        // console.log("🚀 ~ FormComponent ~ tap ~ form:", form)
+        this.update(form);
+      })
     );
     this.store
       .pipe(select(selectFormState), take(1))
       .subscribe((form) => {
         
-        console.log("🚀 ~ FormComponent ~ .subscribe ~ form.form:", form.form)
         this.form.patchValue(form.form)
       });
   }
 
   update(form: Form) {
+    console.log("🚀 ~ FormComponent ~ update ~ form:", form)
+    console.log("🚀 ~ FormComponent ~ update ~ form:", this.form.value)
     this.store.dispatch(actionFormUpdate({ form }));
   }
 

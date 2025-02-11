@@ -4,9 +4,9 @@
       <h1 class="main-heading">{{ 'anms.examples.form.title' | translate }}</h1>
     </div>
   </div>
-  <ng-container *ngIf="formValueChanges$ | async as updatedForm">
+  <!-- <ng-container *ngIf="formValueChanges$ | async as updatedForm">
     {{update(updatedForm)}}
-  </ng-container>
+  </ng-container> -->
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="row justify-content-center">
       <div class="col-md-8">
