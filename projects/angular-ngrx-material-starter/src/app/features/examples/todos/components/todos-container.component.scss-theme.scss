@@ -6,16 +6,16 @@
 
   .todos-filter-menu-overlay {
     .active {
-      color: mat.get-color-from-palette($accent, default-contrast);
-      background-color: mat.get-color-from-palette($accent);
+      color: mat.m2-get-color-from-palette($accent, default-contrast);
+      background-color: mat.m2-get-color-from-palette($accent);
 
       .fa-icon {
-        color: mat.get-color-from-palette($accent, default-contrast);
+        color: mat.m2-get-color-from-palette($accent, default-contrast);
       }
 
       &:hover {
-        color: mat.get-color-from-palette($accent, default-contrast);
-        background-color: mat.get-color-from-palette($accent);
+        color: mat.m2-get-color-from-palette($accent, default-contrast);
+        background-color: mat.m2-get-color-from-palette($accent);
       }
     }
   }
@@ -26,8 +26,8 @@
 
       button {
         border-radius: 2px;
-        background-color: mat.get-color-from-palette($accent);
-        color: mat.get-color-from-palette($accent, default-contrast);
+        background-color: mat.m2-get-color-from-palette($accent);
+        color: mat.m2-get-color-from-palette($accent, default-contrast);
       }
     }
   }

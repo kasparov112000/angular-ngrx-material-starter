@@ -6,10 +6,10 @@
 
   anms-child {
     > div {
-      border-color: mat.get-color-from-palette($warn);
+      border-color: mat.m2-get-color-from-palette($warn);
 
       > h2 {
-        color: mat.get-color-from-palette($warn);
+        color: mat.m2-get-color-from-palette($warn);
       }
     }
   }

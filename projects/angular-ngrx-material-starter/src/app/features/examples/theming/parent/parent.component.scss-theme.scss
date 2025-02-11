@@ -9,10 +9,10 @@
       > .row {
         > .col-md-6 {
           > .example {
-            border-color: mat.get-color-from-palette($accent);
+            border-color: mat.m2-get-color-from-palette($accent);
 
             > h1 {
-              color: mat.get-color-from-palette($accent);
+              color: mat.m2-get-color-from-palette($accent);
             }
           }
         }
