@@ -8,10 +8,21 @@
 
   mat-sidenav-container {
     mat-toolbar {
+      color: mat.m2-get-color-from-palette($primary, lighter);
+      background-color: mat.m2-get-color-from-palette($primary, darker);
+
+      span {
+        color: mat.m2-get-color-from-palette($primary, lighter);
+
+        &:hover {
+          color: mat.m2-get-color-from-palette($accent);
+        }
+      }
+
       button {
         &.active {
-          color: mat.m2-get-color-from-palette($accent, default-contrast);
-          background-color: mat.m2-get-color-from-palette($accent);
+          color: mat.m2-get-color-from-palette($accent);
+          background-color: mat.m2-get-color-from-palette($accent, default-contrast);
         }
       }
 
@@ -33,6 +44,16 @@
       }
     }
 
+    mat-select {
+      color: mat.m2-get-color-from-palette($accent, default-contrast);
+    }
+
+    mat-form-field {
+      color: mat.m2-get-color-from-palette($accent, default-contrast);
+      width: 85px;
+      padding-top: 20px;
+    }
+
     .footer {
       color: mat.m2-get-color-from-palette($primary, lighter);
       background-color: mat.m2-get-color-from-palette($primary, darker);
@@ -41,6 +62,7 @@
       .signature {
         a {
           color: mat.m2-get-color-from-palette($primary, lighter);
+
           &:hover {
             color: mat.m2-get-color-from-palette($accent);
           }
