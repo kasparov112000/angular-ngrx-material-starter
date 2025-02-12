@@ -11,12 +11,14 @@
       color: mat.get-color-from-palette($primary, lighter);
       background-color: mat.get-color-from-palette($primary, darker);
 
-      span{
+      span {
         color: mat.get-color-from-palette($primary, lighter);
+
         &:hover {
           color: mat.get-color-from-palette($accent);
         }
       }
+
       button {
         &.active {
           color: mat.get-color-from-palette($accent);
@@ -42,6 +44,16 @@
       }
     }
 
+    mat-select {
+      color: mat.get-color-from-palette($accent, default-contrast);
+    }
+
+    mat-form-field {
+      color: mat.get-color-from-palette($accent, default-contrast);
+      width: 85px;
+      padding-top: 20px;
+    }
+
     .footer {
       color: mat.get-color-from-palette($primary, lighter);
       background-color: mat.get-color-from-palette($primary, darker);
@@ -50,6 +62,7 @@
       .signature {
         a {
           color: mat.get-color-from-palette($primary, lighter);
+
           &:hover {
             color: mat.get-color-from-palette($accent);
           }

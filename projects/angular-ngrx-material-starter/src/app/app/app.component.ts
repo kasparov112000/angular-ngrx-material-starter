@@ -19,12 +19,19 @@ import {
   actionSettingsChangeAnimationsPageDisabled,
   actionSettingsChangeLanguage
 } from '../core/settings/settings.actions';
+import { MAT_SELECT_CONFIG } from '@angular/material/select';
 
 @Component({
   selector: 'anms-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [routeAnimations]
+  animations: [routeAnimations],
+  providers: [
+  {
+    provide: MAT_SELECT_CONFIG,
+    useValue: { overlayPanelClass: 'select-overlay-pane' },
+  }
+]
 })
 export class AppComponent implements OnInit {
   isProd = env.production;
