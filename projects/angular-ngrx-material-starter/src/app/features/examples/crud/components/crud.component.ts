@@ -17,7 +17,7 @@ import { selectSelectedBook, selectAllBooks } from '../books.selectors';
     templateUrl: './crud.component.html',
     styleUrls: ['./crud.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class CrudComponent {
   /*

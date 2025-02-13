@@ -15,7 +15,7 @@ import { State } from '../../examples.state';
     templateUrl: './stock-market-container.component.html',
     styleUrls: ['./stock-market-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class StockMarketContainerComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

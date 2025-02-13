@@ -20,7 +20,7 @@ import { selectTodos, selectRemoveDoneTodosDisabled } from '../todos.selectors';
     templateUrl: './todos-container.component.html',
     styleUrls: ['./todos-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class TodosContainerComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

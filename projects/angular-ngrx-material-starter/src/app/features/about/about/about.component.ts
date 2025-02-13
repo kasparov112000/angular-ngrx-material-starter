@@ -7,7 +7,7 @@ import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class AboutComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

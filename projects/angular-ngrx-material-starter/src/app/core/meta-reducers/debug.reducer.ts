@@ -8,7 +8,7 @@ export function debug(
   return function (state, action) {
     const newState = reducer(state, action);
     console.log(`[DEBUG] action: ${action.type}`, {
-      payload: (<any>action).payload,
+      payload: (action as any).payload,
       oldState: state,
       newState
     });

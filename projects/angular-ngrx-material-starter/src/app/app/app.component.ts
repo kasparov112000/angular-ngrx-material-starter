@@ -21,11 +21,11 @@ import {
 } from '../core/settings/settings.actions';
 
 @Component({
-    selector: 'anms-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    animations: [routeAnimations],
-    standalone: false
+  selector: 'app-lbt-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  animations: [routeAnimations],
+
 })
 export class AppComponent implements OnInit {
   isProd = env.production;
@@ -33,7 +33,6 @@ export class AppComponent implements OnInit {
   version = env.versions.app;
   year = new Date().getFullYear();
   logo = './assets/logo.png';
-  // logo = require('../../assets/logo.png').default;
   languages = ['en', 'de', 'sk', 'fr', 'es', 'pt-br', 'zh-cn', 'he'];
   navigation = [
     { link: 'about', label: 'anms.menu.about' },
@@ -51,8 +50,8 @@ export class AppComponent implements OnInit {
   theme$: Observable<string>;
 
   constructor(
-    private store: Store,
-    private storageService: LocalStorageService
+    private readonly _store: Store,
+    private readonly _storageService: LocalStorageService
   ) {}
 
   private static isIEorEdgeOrSafari() {
@@ -60,30 +59,30 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.storageService.testLocalStorage();
+    this._storageService.testLocalStorage();
     if (AppComponent.isIEorEdgeOrSafari()) {
-      this.store.dispatch(
+      this._store.dispatch(
         actionSettingsChangeAnimationsPageDisabled({
           pageAnimationsDisabled: true
         })
       );
     }
 
-    this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
-    this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
-    this.language$ = this.store.pipe(select(selectSettingsLanguage));
-    this.theme$ = this.store.pipe(select(selectEffectiveTheme));
+    this.isAuthenticated$ = this._store.pipe(select(selectIsAuthenticated));
+    this.stickyHeader$ = this._store.pipe(select(selectSettingsStickyHeader));
+    this.language$ = this._store.pipe(select(selectSettingsLanguage));
+    this.theme$ = this._store.pipe(select(selectEffectiveTheme));
   }
 
   onLoginClick() {
-    this.store.dispatch(authLogin());
+    this._store.dispatch(authLogin());
   }
 
   onLogoutClick() {
-    this.store.dispatch(authLogout());
+    this._store.dispatch(authLogout());
   }
 
   onLanguageSelect({ value: language }) {
-    this.store.dispatch(actionSettingsChangeLanguage({ language }));
+    this._store.dispatch(actionSettingsChangeLanguage({ language }));
   }
 }

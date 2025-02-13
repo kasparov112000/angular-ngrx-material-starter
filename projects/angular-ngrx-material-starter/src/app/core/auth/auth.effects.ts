@@ -19,7 +19,7 @@ export class AuthEffects {
   public actions$ = inject(Actions);
   public localStorageService = inject(LocalStorageService);
   public router = inject(Router);
-  
+
   login = createEffect(
     () =>
       this.actions$.pipe(
@@ -44,6 +44,4 @@ export class AuthEffects {
       ),
     { dispatch: false, allowSignalWrites: true }
   );
-
-  constructor() {}
 }

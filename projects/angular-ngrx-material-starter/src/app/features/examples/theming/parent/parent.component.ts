@@ -7,7 +7,7 @@ import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../../core/core.module';
     templateUrl: './parent.component.html',
     styleUrls: ['./parent.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class ParentComponent implements OnInit {
   themeSrc: string = require('!raw-loader!./parent.component.scss-theme.scss')

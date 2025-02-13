@@ -17,7 +17,7 @@ import { User, UserService } from '../user.service';
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class UserComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

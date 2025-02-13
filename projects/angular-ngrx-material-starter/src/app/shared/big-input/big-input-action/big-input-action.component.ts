@@ -11,7 +11,7 @@ import {
     templateUrl: './big-input-action.component.html',
     styleUrls: ['./big-input-action.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class BigInputActionComponent {
   @Input()

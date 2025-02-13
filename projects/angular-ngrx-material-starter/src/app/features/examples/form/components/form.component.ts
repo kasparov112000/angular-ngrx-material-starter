@@ -24,7 +24,7 @@ import { Form } from '../form.model';
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class FormComponent implements OnInit {
   /*

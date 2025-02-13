@@ -16,7 +16,7 @@ import { SharedModule } from '../../shared.module';
     >
     </anms-big-input>
   `,
-    standalone: false
+    
 })
 class HostComponent {
   newValue: string;

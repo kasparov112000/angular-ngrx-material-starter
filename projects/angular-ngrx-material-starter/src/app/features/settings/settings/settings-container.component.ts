@@ -20,7 +20,7 @@ import { selectSettings } from '../../../core/settings/settings.selectors';
     templateUrl: './settings-container.component.html',
     styleUrls: ['./settings-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class SettingsContainerComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

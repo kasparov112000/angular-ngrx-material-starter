@@ -10,7 +10,7 @@ import {
     templateUrl: './notifications.component.html',
     styleUrls: ['./notifications.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    
 })
 export class NotificationsComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
