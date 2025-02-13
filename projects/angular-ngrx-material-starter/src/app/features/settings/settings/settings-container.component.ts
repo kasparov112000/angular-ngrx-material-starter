@@ -15,12 +15,15 @@ import {
 import { SettingsState, State } from '../../../core/settings/settings.model';
 import { selectSettings } from '../../../core/settings/settings.selectors';
 
+// -- SharedModule for Standalone components imports
+import { SharedModule } from '../../../shared/shared.module';
+
 @Component({
-    selector: 'anms-settings',
-    templateUrl: './settings-container.component.html',
-    styleUrls: ['./settings-container.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    
+  selector: 'anms-settings',
+  imports: [SharedModule],
+  templateUrl: './settings-container.component.html',
+  styleUrls: ['./settings-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsContainerComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

@@ -3,19 +3,33 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
+    // "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    // "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "importHelpers": true,
-    "module": "esnext",
+    // "module": "esnext",
+    "module": "ES2022",
     "target": "ES2022",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"]
+    // "lib": ["es2018", "dom"]
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    // "fullTemplateTypeCheck": true,
+    // "strictInjectionParameters": true
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "strictStandalone": true
   }
 }

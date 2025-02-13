@@ -15,8 +15,12 @@ import * as todoActions from '../todos.actions';
 import { Todo, TodosFilter } from '../todos.model';
 import { selectTodos, selectRemoveDoneTodosDisabled } from '../todos.selectors';
 
+// -- SharedModule for Standalone components imports
+import { SharedModule } from '../../../../shared/shared.module';
+
 @Component({
     selector: 'anms-todos',
+    imports: [SharedModule],
     templateUrl: './todos-container.component.html',
     styleUrls: ['./todos-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
