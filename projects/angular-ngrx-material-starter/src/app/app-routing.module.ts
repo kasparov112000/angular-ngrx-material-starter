@@ -1,53 +1,22 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes } from '@angular/router';
 
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'about',
-    pathMatch: 'full'
-  },
+export const routes: Routes = [
+  { path: '', redirectTo: 'about', pathMatch: 'full' },
   {
     path: 'about',
-    loadChildren: () =>
-      import('./features/about/about.module').then((m) => m.AboutModule)
+    loadChildren: () => import('./features/about/about-routing.module').then(m => m.AboutRoutingModule)
   },
   {
     path: 'feature-list',
-    loadChildren: () =>
-      import('./features/feature-list/feature-list.module').then(
-        (m) => m.FeatureListModule
-      )
+    loadChildren: () => import('./features/feature-list/feature-list-routing.module').then(m => m.FeatureListRoutingModule)
   },
   {
     path: 'settings',
-    loadChildren: () =>
-      import('./features/settings/settings.module').then(
-        (m) => m.SettingsModule
-      )
+    loadChildren: () => import('./features/settings/settings-routing.module').then(m => m.SettingsRoutingModule)
   },
   {
     path: 'examples',
-    loadChildren: () =>
-      import('./features/examples/examples.module').then(
-        (m) => m.ExamplesModule
-      )
+    loadChildren: () => import('./features/examples/examples-routing.module').then(m => m.ExamplesRoutingModule)
   },
-  {
-    path: '**',
-    redirectTo: 'about'
-  }
+  { path: '**', redirectTo: 'about' }
 ];
-
-@NgModule({
-  // useHash supports github.io demo page, remove in your app
-  imports: [
-    RouterModule.forRoot(routes, {
-      useHash: true,
-      scrollPositionRestoration: 'enabled',
-      preloadingStrategy: PreloadAllModules
-    })
-  ],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}

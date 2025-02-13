@@ -19,13 +19,46 @@ import {
   actionSettingsChangeAnimationsPageDisabled,
   actionSettingsChangeLanguage
 } from '../core/settings/settings.actions';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-lbt-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [routeAnimations],
-
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    AsyncPipe,
+    RouterLink,
+    FormsModule,
+    // Material
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    // Other
+    FontAwesomeModule,
+    TranslateModule
+  ]
 })
 export class AppComponent implements OnInit {
   isProd = env.production;
