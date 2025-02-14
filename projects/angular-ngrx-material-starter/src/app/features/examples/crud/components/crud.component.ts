@@ -11,9 +11,11 @@ import { State } from '../../examples.state';
 import { Book } from '../books.model';
 import { actionBooksDeleteOne, actionBooksUpsertOne } from '../books.actions';
 import { selectSelectedBook, selectAllBooks } from '../books.selectors';
+import { SharedModule } from '../../../../shared/shared.module';
 
 @Component({
     selector: 'anms-crud',
+    imports: [SharedModule],
     templateUrl: './crud.component.html',
     styleUrls: ['./crud.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

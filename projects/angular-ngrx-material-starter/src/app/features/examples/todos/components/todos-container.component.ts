@@ -17,10 +17,12 @@ import { selectTodos, selectRemoveDoneTodosDisabled } from '../todos.selectors';
 
 // -- SharedModule for Standalone components imports
 import { SharedModule } from '../../../../shared/shared.module';
+import { BigInputActionComponent } from './../../../../shared/big-input/big-input-action/big-input-action.component';
+import { BigInputComponent } from '../../../../shared/big-input/big-input/big-input.component';
 
 @Component({
     selector: 'anms-todos',
-    imports: [SharedModule],
+    imports: [SharedModule, BigInputActionComponent, BigInputComponent ],
     templateUrl: './todos-container.component.html',
     styleUrls: ['./todos-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,7 +54,10 @@ export class TodosContainerComponent implements OnInit {
     return this.newTodo.length < 4;
   }
 
-  onNewTodoChange(newTodo: string) {
+  onNewTodoChange(event:any) {
+    
+    const newTodo = event.target.value;
+    
     this.newTodo = newTodo;
   }
 

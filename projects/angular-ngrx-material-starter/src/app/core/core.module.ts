@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
-import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HttpClient,
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi
+} from '@angular/common/http';
 import {
   StoreRouterConnectingModule,
   RouterStateSerializer
@@ -27,7 +32,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { environment } from '../../environments/environment';
 
 import {
-  AppState,
+  type AppState,
   reducers,
   metaReducers,
   selectRouterState
@@ -91,76 +96,76 @@ export {
   selectSettingsStickyHeader
 };
 
-export function httpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(
-    http,
-    `${environment.i18nPrefix}/assets/i18n/`,
-    '.json'
-  );
-}
+// export function httpLoaderFactory(http: HttpClient) {
+//   return new TranslateHttpLoader(
+//     http,
+//     `${environment.i18nPrefix}/assets/i18n/`,
+//     '.json'
+//   );
+// }
 
-@NgModule({ declarations: [],
-    exports: [
-        // angular
-        FormsModule,
-        ReactiveFormsModule,
-        // material
-        MatSidenavModule,
-        MatToolbarModule,
-        MatListModule,
-        MatMenuModule,
-        MatIconModule,
-        MatSelectModule,
-        MatTooltipModule,
-        MatSnackBarModule,
-        MatButtonModule,
-        MatSliderModule,
-        // 3rd party
-        FontAwesomeModule,
-        TranslateModule
-    ], imports: [
-        // angular
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        // material
-        MatSidenavModule,
-        MatToolbarModule,
-        MatListModule,
-        MatMenuModule,
-        MatIconModule,
-        MatSelectModule,
-        MatTooltipModule,
-        MatSnackBarModule,
-        MatButtonModule,
-        MatSliderModule,
-        // ngrx
-        StoreModule.forRoot(reducers, { metaReducers }),
-        StoreRouterConnectingModule.forRoot(),
-        EffectsModule.forRoot([
-            AuthEffects,
-            SettingsEffects,
-            GoogleAnalyticsEffects
-        ]),
-        environment.production
-            ? []
-            : StoreDevtoolsModule.instrument({
-                name: 'Angular NgRx Material Starter'
-            }),
-        // 3rd party
-        FontAwesomeModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: httpLoaderFactory,
-                deps: [HttpClient]
-            }
-        })], providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-        { provide: ErrorHandler, useClass: AppErrorHandler },
-        { provide: RouterStateSerializer, useClass: CustomSerializer },
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+@NgModule({
+  declarations: [],
+  exports: [
+    // angular
+    FormsModule,
+    ReactiveFormsModule,
+    // material
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatSliderModule,
+    // 3rd party
+    FontAwesomeModule,
+    TranslateModule
+  ],
+  imports: [
+    // angular
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    // material
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatSliderModule,
+    // ngrx
+    // StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule.forRoot(),
+    // EffectsModule.forRoot([
+    //   AuthEffects,
+    //   SettingsEffects,
+    //   GoogleAnalyticsEffects
+    // ]),
+    // environment.production
+    //   ? []
+    //   : StoreDevtoolsModule.instrument({
+    //       name: 'Angular NgRx Material Starter'
+    //     }),
+    // 3rd party
+    FontAwesomeModule,
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: httpLoaderFactory,
+    //     deps: [HttpClient]
+    //   }
+    // })
+  ],
+  providers: []
+})
 export class CoreModule {
   constructor(
     @Optional()

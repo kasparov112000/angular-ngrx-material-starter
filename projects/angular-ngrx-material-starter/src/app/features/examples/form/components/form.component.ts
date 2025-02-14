@@ -19,8 +19,12 @@ import { actionFormReset, actionFormUpdate } from '../form.actions';
 import { selectFormState } from '../form.selectors';
 import { Form } from '../form.model';
 
+// -- SharedModule for Standalone components imports
+import { SharedModule } from '../../../../shared/shared.module';
+
 @Component({
     selector: 'anms-form',
+    imports: [SharedModule],
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

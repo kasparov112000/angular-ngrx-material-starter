@@ -1,5 +1,5 @@
 import browser from 'browser-detect';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -13,7 +13,8 @@ import {
   selectIsAuthenticated,
   selectSettingsStickyHeader,
   selectSettingsLanguage,
-  selectEffectiveTheme
+  selectEffectiveTheme,
+  CoreModule
 } from '../core/core.module';
 import {
   actionSettingsChangeAnimationsPageDisabled,
@@ -29,10 +30,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'app-lbt-root',
@@ -40,24 +42,11 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
   animations: [routeAnimations],
   imports: [
-    CommonModule,
+    SharedModule,
+    CoreModule,
     RouterOutlet,
     AsyncPipe,
     RouterLink,
-    FormsModule,
-    // Material
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatMenuModule,
-    MatIconModule,
-    MatSelectModule,
-    MatTooltipModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    // Other
-    FontAwesomeModule,
-    TranslateModule
   ]
 })
 export class AppComponent implements OnInit {
@@ -82,10 +71,16 @@ export class AppComponent implements OnInit {
   language$: Observable<string>;
   theme$: Observable<string>;
 
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+
   constructor(
     private readonly _store: Store,
     private readonly _storageService: LocalStorageService
   ) {}
+
+  toggleSidenav() {
+    this.sidenav.toggle();
+  }
 
   private static isIEorEdgeOrSafari() {
     return ['ie', 'edge', 'safari'].includes(browser().name);

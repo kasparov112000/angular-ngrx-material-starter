@@ -46,6 +46,8 @@ import {
   faBook
 } from '@fortawesome/free-solid-svg-icons';
 import { faMediumM, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
@@ -66,10 +68,13 @@ import { faMediumM, faGithub } from '@fortawesome/free-brands-svg-icons';
     MatMenuModule,
     MatIconModule,
     MatTooltipModule,
+    MatToolbarModule,
+    MatSidenavModule,
     MatSnackBarModule,
     MatSlideToggleModule,
     MatDividerModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+
   ],
   declarations: [
 
@@ -93,6 +98,8 @@ import { faMediumM, faGithub } from '@fortawesome/free-brands-svg-icons';
     MatSelectModule,
     MatIconModule,
     MatTooltipModule,
+    MatToolbarModule,
+    MatSidenavModule,
     MatSnackBarModule,
     MatSlideToggleModule,
     MatDividerModule,

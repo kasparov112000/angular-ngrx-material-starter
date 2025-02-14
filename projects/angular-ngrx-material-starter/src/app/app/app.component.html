@@ -6,7 +6,7 @@
       <div class="branding"><img [src]="logo" [alt]="logo"/>
         <span>{{ 'anms.title.short' | translate}}</span></div>
       <mat-nav-list>
-        <a mat-list-item *ngFor="let item of navigationSideMenu" (click)="sidenav.close()" [routerLink]="[item.link]"
+        <a mat-list-item *ngFor="let item of navigationSideMenu" (click)="toggleSidenav()" [routerLink]="[item.link]"
           routerLinkActive="active">
           {{item.label | translate}}
         </a>
@@ -16,11 +16,12 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <div class="wrapper">
+    <mat-sidenav-content class="wrapper">
 
       <div class="toolbar" [style.position]="(stickyHeader$ | async) ? 'fixed' : 'inherit'" [class.mat-elevation-z4]="(stickyHeader$ | async)">
         <mat-toolbar>
-          <button mat-icon-button class="d-md-none" (click)="sidenav.open()">
+           
+          <button mat-icon-button class="d-md-none" (click)="toggleSidenav()">
             <fa-icon icon="bars"></fa-icon>
 
           </button>
@@ -78,7 +79,7 @@
         </mat-toolbar>
       </div>
 
-      <div class="content" [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.data && o.activatedRoute.routeConfig.data.title">
+      <div class="content" [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.data && o.activatedRoute.routeConfig.data['title']">
         <router-outlet #o="outlet"></router-outlet>
       </div>
 
@@ -126,7 +127,7 @@
         </div>
       </div>
 
-    </div>
+    </mat-sidenav-content>
 
   </mat-sidenav-container>
 

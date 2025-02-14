@@ -12,8 +12,12 @@ import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../../core/animations/route.ani
 
 import { User, UserService } from '../user.service';
 
+// -- SharedModule for Standalone components imports
+import { SharedModule } from '../../../../shared/shared.module';
+
 @Component({
     selector: 'anms-user',
+    imports: [SharedModule],
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

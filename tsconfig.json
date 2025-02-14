@@ -24,12 +24,12 @@
     "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
-    // "fullTemplateTypeCheck": true,
-    // "strictInjectionParameters": true
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true,
-    "strictStandalone": true
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+    // "enableI18nLegacyMessageIdFormat": false,
+    // "strictInjectionParameters": true,
+    // "strictInputAccessModifiers": true,
+    // "strictTemplates": true,
+    // "strictStandalone": true
   }
 }

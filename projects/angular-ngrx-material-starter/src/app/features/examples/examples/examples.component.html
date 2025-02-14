@@ -19,7 +19,7 @@
     <mat-select [placeholder]="'anms.examples.title' | translate" [value]="'todos'">
       <mat-option *ngFor="let e of examples"
         [value]="e.link"
-        [routerLink]="e.link"
+        (click)="navigateTo(e.link)"
         [disabled]="e.auth && !(isAuthenticated$ | async)">
         {{e.label | translate}}
       </mat-option>

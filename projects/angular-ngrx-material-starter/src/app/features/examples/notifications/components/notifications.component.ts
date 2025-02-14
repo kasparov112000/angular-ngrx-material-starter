@@ -5,8 +5,12 @@ import {
   NotificationService
 } from '../../../../core/core.module';
 
+// -- SharedModule for Standalone components imports
+import { SharedModule } from '../../../../shared/shared.module';
+
 @Component({
     selector: 'anms-notifications',
+    imports: [SharedModule],
     templateUrl: './notifications.component.html',
     styleUrls: ['./notifications.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
