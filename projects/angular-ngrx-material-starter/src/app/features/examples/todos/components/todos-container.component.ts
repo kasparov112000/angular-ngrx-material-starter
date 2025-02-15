@@ -1,6 +1,6 @@
 import { selectTodosFilter } from './../todos.selectors';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { select, Store, StoreModule } from '@ngrx/store';
 import { take } from 'rxjs/operators';
@@ -23,12 +23,14 @@ import { BigInputComponent } from '../../../../shared/big-input/big-input/big-in
     selector: 'anms-todos',
     imports: [SharedModule,
       BigInputActionComponent,
-      BigInputComponent
+      BigInputComponent,
+      TranslateModule
     ],
     templateUrl: './todos-container.component.html',
     styleUrls: ['./todos-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true
+    standalone: true,
+    providers: [TranslateService, MatSnackBar, NotificationService]
 
 })
 export class TodosContainerComponent implements OnInit {
@@ -42,7 +44,7 @@ export class TodosContainerComponent implements OnInit {
     public store: Store,
     public snackBar: MatSnackBar,
     public translateService: TranslateService,
-    private notificationService: NotificationService
+    private readonly notificationService: NotificationService
   ) {}
 
   ngOnInit() {
@@ -70,14 +72,20 @@ export class TodosContainerComponent implements OnInit {
 
   onAddTodo() {
     this.store.dispatch(todoActions.actionTodosAdd(this.newTodo));
-    const addedMessage = this.translateService.instant(
-      'anms.examples.todos.added.notification',
-      { name: this.newTodo }
-    );
-    this.notificationService.info(addedMessage);
-    this.newTodo = '';
-  }
 
+    try {
+        const translation = this.translateService.instant('anms.examples.todos.added.notification', {
+            name: this.newTodo
+        });
+        this.notificationService.info(translation);
+    } catch (error) {
+        // Fallback message in case translation fails
+        this.notificationService.info(`Added: ${this.newTodo}`);
+        console.error('Translation error:', error);
+    }
+
+    this.newTodo = '';
+}
   onToggleTodo(todo: Todo) {
     this.store.dispatch(todoActions.actionTodosToggle({ id: todo.id }));
     const newStatus = this.translateService.instant(

@@ -14,7 +14,7 @@ import {
 } from '@angular/common/http';
 import { provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, MissingTranslationHandler } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app-routing.module';
@@ -29,6 +29,7 @@ import { environment } from '../environments/environment';
 import { AuthEffects } from './core/auth/auth.effects';
 import { GoogleAnalyticsEffects } from './core/google-analytics/google-analytics.effects';
 import { SettingsEffects } from './core/settings/settings.effects';
+import { CustomMissingTranslationHandler } from '../../../../custom-translation-handler';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(
@@ -54,10 +55,9 @@ export const appConfig: ApplicationConfig = {
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     { provide: ErrorHandler, useClass: AppErrorHandler },
     { provide: RouterStateSerializer, useClass: CustomSerializer },
-    provideHttpClient(withInterceptorsFromDi()),
     provideStore(
       reducers, { metaReducers },
-      
+
     ),
     provideEffects([AuthEffects, SettingsEffects, GoogleAnalyticsEffects]),
     provideStoreDevtools({
@@ -70,7 +70,13 @@ export const appConfig: ApplicationConfig = {
         provide: TranslateLoader,
         useFactory: httpLoaderFactory,
         deps: [HttpClient]
-      }
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: CustomMissingTranslationHandler
+      },
     }).providers,
   ]
 };
+
+
