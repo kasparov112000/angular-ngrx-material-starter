@@ -1,4 +1,9 @@
 import { Routes } from '@angular/router';
+import { provideEffects } from '@ngrx/effects';
+import { provideState } from '@ngrx/store';
+import { reducers } from './core/core.state';
+import { FEATURE_NAME } from './features/examples/examples.state';
+import { TodosEffects } from './features/examples/todos/todos.effects';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'about', pathMatch: 'full' },
@@ -16,7 +21,12 @@ export const routes: Routes = [
   },
   {
     path: 'examples',
-    loadChildren: () => import('./features/examples/examples-routing.module').then(m => m.ExamplesRoutingModule)
+    loadChildren: () => import('./features/examples/examples-routing.module').then(m => m.ExamplesRoutingModule),
+    providers: [
+      provideState(FEATURE_NAME, reducers),
+      provideEffects(TodosEffects)
+    ]
   },
-  { path: '**', redirectTo: 'about' }
+  { path: '**', redirectTo: 'about' },
+
 ];

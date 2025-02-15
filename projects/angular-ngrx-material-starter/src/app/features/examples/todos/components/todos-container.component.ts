@@ -2,7 +2,7 @@ import { selectTodosFilter } from './../todos.selectors';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { select, Store } from '@ngrx/store';
+import { select, Store, StoreModule } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -19,14 +19,17 @@ import { selectTodos, selectRemoveDoneTodosDisabled } from '../todos.selectors';
 import { SharedModule } from '../../../../shared/shared.module';
 import { BigInputActionComponent } from './../../../../shared/big-input/big-input-action/big-input-action.component';
 import { BigInputComponent } from '../../../../shared/big-input/big-input/big-input.component';
-
 @Component({
     selector: 'anms-todos',
-    imports: [SharedModule, BigInputActionComponent, BigInputComponent ],
+    imports: [SharedModule,
+      BigInputActionComponent,
+      BigInputComponent
+    ],
     templateUrl: './todos-container.component.html',
     styleUrls: ['./todos-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    
+    standalone: true
+
 })
 export class TodosContainerComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
@@ -55,9 +58,9 @@ export class TodosContainerComponent implements OnInit {
   }
 
   onNewTodoChange(event:any) {
-    
+
     const newTodo = event.target.value;
-    
+
     this.newTodo = newTodo;
   }
 

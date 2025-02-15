@@ -21,7 +21,8 @@ import { SharedModule } from '../../../../shared/shared.module';
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    
+    providers: [UserService]
+
 })
 export class UserComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

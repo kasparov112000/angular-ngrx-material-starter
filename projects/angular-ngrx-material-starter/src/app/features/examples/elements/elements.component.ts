@@ -1,29 +1,26 @@
 import { Component, OnInit, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
-import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/animations/route.animations';
-
-// -- SharedModule for Standalone components imports
+import { LazyElementsModule } from '@angular-extensions/elements';
 import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
     selector: 'anms-elements',
-    imports: [SharedModule],
+    standalone: true,
+    imports: [
+        SharedModule,
+        LazyElementsModule
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add this line
     templateUrl: './elements.component.html',
     styleUrls: ['./elements.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ElementsComponent implements OnInit {
-  routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
+    ngOnInit(){
+    }
+    counter = 0;
+    routeAnimationsElements = 'route-animations-elements';
 
-  counter = 0;
-
-  constructor() {}
-
-  ngOnInit() {}
-
-  increment() {
-    this.counter++;
-  }
+    increment() {
+        this.counter++;
+    }
 }
