@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 import { SharedModule } from '../../../shared/shared.module';
-
 @Component({
     selector: 'anms-about',
     imports: [SharedModule],

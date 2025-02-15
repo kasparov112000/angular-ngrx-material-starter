@@ -108,6 +108,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatNativeDateModule,
 
     FontAwesomeModule,
+    
   ]
 })
 export class SharedModule {

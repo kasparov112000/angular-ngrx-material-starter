@@ -46,11 +46,10 @@ export const appConfig: ApplicationConfig = {
       ignoreChangesOutsideZone: true
     }),
     provideRouter(
-      routes
-      // withDebugTracing()
+      routes,
+      withDebugTracing()
     ),
     provideAnimations(),
-    provideNoopAnimations(),
     provideHttpClient(withInterceptors([]), withFetch()),
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     { provide: ErrorHandler, useClass: AppErrorHandler },
