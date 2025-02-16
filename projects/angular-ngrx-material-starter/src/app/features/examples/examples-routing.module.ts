@@ -17,6 +17,24 @@ import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 import { FEATURE_NAME, reducers } from './examples.state';
 import { TodosEffects } from './todos/todos.effects';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { BooksEffects } from './crud/books.effects';
+import { ExamplesEffects } from './examples.effects';
+import { FormEffects } from './form/form.effects';
+import { UserService } from './simple-state-management/user.service';
+import { StockMarketEffects } from './stock-market/stock-market.effects';
+import { StockMarketService } from './stock-market/stock-market.service';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { environment } from '../../../environments/environment';
+
+export function httpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(
+    http,
+    `${environment.i18nPrefix}/assets/i18n/examples/`,
+    '.json'
+  );
+}
 
 const routes: Routes = [
   {
@@ -33,8 +51,6 @@ const routes: Routes = [
         component: TodosContainerComponent,
         data: { title: 'anms.examples.menu.todos' },
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       },
       {
@@ -42,8 +58,6 @@ const routes: Routes = [
         component: StockMarketContainerComponent,
         data: { title: 'anms.examples.menu.stocks' },
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       },
       {
@@ -52,8 +66,6 @@ const routes: Routes = [
         data: { title: 'anms.examples.menu.theming' }
         ,
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       },
       {
@@ -62,8 +74,6 @@ const routes: Routes = [
         pathMatch: 'full'
         ,
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       },
       {
@@ -72,8 +82,6 @@ const routes: Routes = [
         data: { title: 'anms.examples.menu.crud' }
         ,
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       },
       {
@@ -82,8 +90,6 @@ const routes: Routes = [
         data: { title: 'anms.examples.menu.simple-state-management' }
         ,
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       },
       {
@@ -92,8 +98,6 @@ const routes: Routes = [
         data: { title: 'anms.examples.menu.form' }
         ,
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       },
       {
@@ -102,8 +106,6 @@ const routes: Routes = [
         data: { title: 'anms.examples.menu.notifications' }
         ,
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       },
       {
@@ -112,8 +114,6 @@ const routes: Routes = [
         data: { title: 'anms.examples.menu.elements' }
         ,
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       },
       {
@@ -123,8 +123,6 @@ const routes: Routes = [
         data: { title: 'anms.examples.menu.auth' }
         ,
         providers: [
-          provideState(FEATURE_NAME, reducers),
-          provideEffects(TodosEffects)
         ]
       }
     ]
@@ -133,6 +131,28 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    StockMarketService,
+    UserService,
+    // Config feature state
+    provideState(FEATURE_NAME, reducers),
+    // Config effects
+    provideEffects([
+      ExamplesEffects,
+      TodosEffects,
+      StockMarketEffects,
+      BooksEffects,
+      FormEffects
+    ]),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }).providers,
+  
+  ]
 })
 export class ExamplesRoutingModule {}
