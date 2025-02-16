@@ -2,9 +2,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 import { SharedModule } from '../../../shared/shared.module';
+import { RouterModule } from '@angular/router';
 @Component({
     selector: 'anms-about',
-    imports: [SharedModule],
+    imports: [SharedModule, RouterModule],
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
