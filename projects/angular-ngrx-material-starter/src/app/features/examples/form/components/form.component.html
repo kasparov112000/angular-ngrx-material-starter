@@ -4,9 +4,9 @@
       <h1 class="main-heading">{{ 'anms.examples.form.title' | translate }}</h1>
     </div>
   </div>
-  <ng-container *ngIf="formValueChanges$ | async as updatedForm">
+  <!-- <ng-container *ngIf="formValueChanges$ | async as updatedForm">
     {{update(updatedForm)}}
-  </ng-container>
+  </ng-container> -->
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -84,7 +84,10 @@
             <div class="col">
               <label>{{ 'anms.examples.form.text2' | translate }}</label>
               <br>
-              <mat-slider thumbLabel tickInterval="1" min="1" max="10" formControlName="rating"></mat-slider>
+              <!-- <mat-slider thumbLabel tickInterval="1" min="1" max="10" formControlName="rating"></mat-slider> -->
+              <mat-slider min="1" max="10" step="1">
+                <input matSliderThumb formControlName="rating" value="0">
+              </mat-slider>
             </div>
           </div>
           <div class="row">

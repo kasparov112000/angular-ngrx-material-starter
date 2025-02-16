@@ -120,7 +120,6 @@
   "anms.examples.theming.parent.text9": "selectors to prevent styles from leaking into child components. This can be achieved by using",
   "anms.examples.theming.parent.title": "Theme scoping with nested components",
   "anms.examples.title": "Examples",
-  "anms.examples.todos.added.notification": "{{name}} added",
   "anms.examples.todos.example": "Todo example",
   "anms.examples.todos.filter.active": "Active",
   "anms.examples.todos.filter.all": "All",
@@ -143,5 +142,40 @@
   "anms.examples.todos.toggle.notification": "Toggled {{name}} to",
   "anms.examples.todos.tooltip.add": "Add new todo",
   "anms.examples.todos.tooltip.remove": "Remove done todos",
-  "anms.examples.todos.undo": "Undo"
+  "anms.examples.todos.undo": "Undo",
+  "anms.examples.todos.added.notification": "{{name}} added",
+  "anms.examples.menu": {
+      "todos": "Todos",
+      "stocks": "Stocks",
+      "theming": "Theming",
+      "crud": "CRUD",
+      "simple-state-management": "Simple State Management",
+      "form": "Form",
+      "notifications": "Notifications",
+      "elements": "Elements",
+      "auth": "Auth"
+    },
+    "anms.examples.todos": {
+      "input": "Todo Input",
+      "tooltip": {
+        "add": "Add Todo",
+        "remove": "Remove Todo"
+      },
+      "text1": "Todo Text 1",
+      "text2": "Todo Text 2",
+      "text3": "Todo Text 3",
+      "text4": "Todo Text 4",
+      "text5": "Todo Text 5",
+      "text6": "Todo Text 6",
+      "example": "Todo Example",
+      "list": "Todo List",
+      "filter": {
+        "all": "All",
+        "done": "Done",
+        "active": "Active",
+        "description": "Filter Description",
+        "items": "Filter Items"
+      }
+    }
+
 }

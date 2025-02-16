@@ -11,7 +11,7 @@
           <mat-form-field>
             <input matInput [placeholder]="'anms.examples.stocks.symbol' | translate"
                    [value]="stocks.symbol"
-                   (keyup)="onSymbolChange($event.target.value)">
+                   (keyup)="onSymbolChange($event)">
           </mat-form-field>
         </form>
         <p>
@@ -51,7 +51,7 @@
     <div class="col-md-12 col-lg-4" [ngClass]="routeAnimationsElements">
       <p>
         {{ 'anms.examples.stocks.text1' | translate }} <code>HTTP</code>
-        {{ 'anms.examples.stocks.text2' | translate }} <code>@ngrx/effects</code>
+        {{ 'anms.examples.stocks.text2' | translate }} <code>&#64;ngrx/effects</code>
         {{ 'anms.examples.stocks.text3' | translate }}
       </p>
       <p>{{ 'anms.examples.stocks.text4' | translate }}</p>

@@ -46,10 +46,8 @@ import {
   faBook
 } from '@fortawesome/free-solid-svg-icons';
 import { faMediumM, faGithub } from '@fortawesome/free-brands-svg-icons';
-
-import { BigInputComponent } from './big-input/big-input/big-input.component';
-import { BigInputActionComponent } from './big-input/big-input-action/big-input-action.component';
-import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
@@ -70,16 +68,16 @@ import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
     MatMenuModule,
     MatIconModule,
     MatTooltipModule,
+    MatToolbarModule,
+    MatSidenavModule,
     MatSnackBarModule,
     MatSlideToggleModule,
     MatDividerModule,
+    FontAwesomeModule,
 
-    FontAwesomeModule
   ],
   declarations: [
-    BigInputComponent,
-    BigInputActionComponent,
-    RtlSupportDirective
+
   ],
   exports: [
     CommonModule,
@@ -100,6 +98,8 @@ import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
     MatSelectModule,
     MatIconModule,
     MatTooltipModule,
+    MatToolbarModule,
+    MatSidenavModule,
     MatSnackBarModule,
     MatSlideToggleModule,
     MatDividerModule,
@@ -108,10 +108,7 @@ import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
     MatNativeDateModule,
 
     FontAwesomeModule,
-
-    BigInputComponent,
-    BigInputActionComponent,
-    RtlSupportDirective
+    
   ]
 })
 export class SharedModule {

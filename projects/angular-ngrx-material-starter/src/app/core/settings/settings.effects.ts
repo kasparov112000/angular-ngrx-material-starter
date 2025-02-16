@@ -1,5 +1,5 @@
 import { ActivationEnd, Router } from '@angular/router';
-import { Injectable, NgZone } from '@angular/core';
+import { inject, Injectable, NgZone } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -41,6 +41,21 @@ const INIT = of('anms-init-effect-trigger');
 
 @Injectable()
 export class SettingsEffects {
+
+  /*
+   *
+   * @INJECT
+   */
+  private ngZone = inject(NgZone);
+  private actions$ = inject(Actions);
+  private store = inject(Store<State>);
+  private router = inject(Router);
+  private overlayContainer = inject(OverlayContainer);
+  private localStorageService = inject(LocalStorageService);
+  private titleService = inject(TitleService);
+  private animationsService = inject(AnimationsService);
+  private translateService = inject(TranslateService);
+
   hour = 0;
 
   changeHour = this.ngZone.runOutsideAngular(() =>
@@ -72,7 +87,7 @@ export class SettingsEffects {
           this.localStorageService.setItem(SETTINGS_KEY, settings)
         )
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   updateRouteAnimationType = createEffect(
@@ -99,7 +114,7 @@ export class SettingsEffects {
           )
         )
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   updateTheme = createEffect(
@@ -118,7 +133,7 @@ export class SettingsEffects {
           classList.add(effectiveTheme);
         })
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   setTranslateServiceLanguage = createEffect(
@@ -128,7 +143,7 @@ export class SettingsEffects {
         distinctUntilChanged(),
         tap((language) => this.translateService.use(language))
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   setTitle = createEffect(
@@ -146,18 +161,8 @@ export class SettingsEffects {
           );
         })
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
-  constructor(
-    private actions$: Actions,
-    private store: Store<State>,
-    private router: Router,
-    private overlayContainer: OverlayContainer,
-    private localStorageService: LocalStorageService,
-    private titleService: TitleService,
-    private animationsService: AnimationsService,
-    private translateService: TranslateService,
-    private ngZone: NgZone
-  ) {}
+  constructor() {}
 }

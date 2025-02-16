@@ -1,8 +1,8 @@
 import { selectTodosFilter } from './../todos.selectors';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { select, Store } from '@ngrx/store';
+import { select, Store, StoreModule } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -15,11 +15,23 @@ import * as todoActions from '../todos.actions';
 import { Todo, TodosFilter } from '../todos.model';
 import { selectTodos, selectRemoveDoneTodosDisabled } from '../todos.selectors';
 
+// -- SharedModule for Standalone components imports
+import { SharedModule } from '../../../../shared/shared.module';
+import { BigInputActionComponent } from './../../../../shared/big-input/big-input-action/big-input-action.component';
+import { BigInputComponent } from '../../../../shared/big-input/big-input/big-input.component';
 @Component({
-  selector: 'anms-todos',
-  templateUrl: './todos-container.component.html',
-  styleUrls: ['./todos-container.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'anms-todos',
+    imports: [SharedModule,
+      BigInputActionComponent,
+      BigInputComponent,
+      TranslateModule
+    ],
+    templateUrl: './todos-container.component.html',
+    styleUrls: ['./todos-container.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    providers: [TranslateService, MatSnackBar, NotificationService]
+
 })
 export class TodosContainerComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
@@ -32,7 +44,7 @@ export class TodosContainerComponent implements OnInit {
     public store: Store,
     public snackBar: MatSnackBar,
     public translateService: TranslateService,
-    private notificationService: NotificationService
+    private readonly notificationService: NotificationService
   ) {}
 
   ngOnInit() {
@@ -47,7 +59,10 @@ export class TodosContainerComponent implements OnInit {
     return this.newTodo.length < 4;
   }
 
-  onNewTodoChange(newTodo: string) {
+  onNewTodoChange(event:any) {
+
+    const newTodo = event.target.value;
+
     this.newTodo = newTodo;
   }
 
@@ -57,14 +72,20 @@ export class TodosContainerComponent implements OnInit {
 
   onAddTodo() {
     this.store.dispatch(todoActions.actionTodosAdd(this.newTodo));
-    const addedMessage = this.translateService.instant(
-      'anms.examples.todos.added.notification',
-      { name: this.newTodo }
-    );
-    this.notificationService.info(addedMessage);
-    this.newTodo = '';
-  }
 
+    try {
+        const translation = this.translateService.instant('anms.examples.todos.added.notification', {
+            name: this.newTodo
+        });
+        this.notificationService.info(translation);
+    } catch (error) {
+        // Fallback message in case translation fails
+        this.notificationService.info(`Added: ${this.newTodo}`);
+        console.error('Translation error:', error);
+    }
+
+    this.newTodo = '';
+}
   onToggleTodo(todo: Todo) {
     this.store.dispatch(todoActions.actionTodosToggle({ id: todo.id }));
     const newStatus = this.translateService.instant(

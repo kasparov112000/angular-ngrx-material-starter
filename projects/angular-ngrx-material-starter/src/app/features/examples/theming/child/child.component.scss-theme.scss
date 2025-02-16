@@ -1,15 +1,15 @@
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
+// @import '@angular/material/theming';
 
 @mixin anms-child-component-theme($theme) {
   $warn: map-get($theme, warn);
 
   anms-child {
     > div {
-      border-color: mat.get-color-from-palette($warn);
+      border-color: mat.m2-get-color-from-palette($warn);
 
       > h2 {
-        color: mat.get-color-from-palette($warn);
+        color: mat.m2-get-color-from-palette($warn);
       }
     }
   }

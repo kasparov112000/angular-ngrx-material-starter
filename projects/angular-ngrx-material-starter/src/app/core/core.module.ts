@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
 import {
-  HttpClientModule,
   HttpClient,
-  HTTP_INTERCEPTORS
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi
 } from '@angular/common/http';
 import {
   StoreRouterConnectingModule,
@@ -25,13 +26,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { environment } from '../../environments/environment';
 
 import {
-  AppState,
+  type AppState,
   reducers,
   metaReducers,
   selectRouterState
@@ -74,6 +75,7 @@ import {
   faInstagram,
   faYoutube
 } from '@fortawesome/free-brands-svg-icons';
+import { MatSliderModule } from '@angular/material/slider';
 
 export {
   TitleService,
@@ -94,66 +96,20 @@ export {
   selectSettingsStickyHeader
 };
 
-export function httpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(
-    http,
-    `${environment.i18nPrefix}/assets/i18n/`,
-    '.json'
-  );
-}
+// export function httpLoaderFactory(http: HttpClient) {
+//   return new TranslateHttpLoader(
+//     http,
+//     `${environment.i18nPrefix}/assets/i18n/`,
+//     '.json'
+//   );
+// }
 
 @NgModule({
-  imports: [
-    // angular
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-
-    // material
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatMenuModule,
-    MatIconModule,
-    MatSelectModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatButtonModule,
-
-    // ngrx
-    StoreModule.forRoot(reducers, { metaReducers }),
-    StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([
-      AuthEffects,
-      SettingsEffects,
-      GoogleAnalyticsEffects
-    ]),
-    environment.production
-      ? []
-      : StoreDevtoolsModule.instrument({
-          name: 'Angular NgRx Material Starter'
-        }),
-
-    // 3rd party
-    FontAwesomeModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ],
   declarations: [],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-    { provide: ErrorHandler, useClass: AppErrorHandler },
-    { provide: RouterStateSerializer, useClass: CustomSerializer }
-  ],
   exports: [
     // angular
     FormsModule,
-
+    ReactiveFormsModule,
     // material
     MatSidenavModule,
     MatToolbarModule,
@@ -164,11 +120,51 @@ export function httpLoaderFactory(http: HttpClient) {
     MatTooltipModule,
     MatSnackBarModule,
     MatButtonModule,
-
+    MatSliderModule,
     // 3rd party
     FontAwesomeModule,
     TranslateModule
-  ]
+  ],
+  imports: [
+    // angular
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    // material
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatSliderModule,
+    // ngrx
+    // StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule.forRoot(),
+    // EffectsModule.forRoot([
+    //   AuthEffects,
+    //   SettingsEffects,
+    //   GoogleAnalyticsEffects
+    // ]),
+    // environment.production
+    //   ? []
+    //   : StoreDevtoolsModule.instrument({
+    //       name: 'Angular NgRx Material Starter'
+    //     }),
+    // 3rd party
+    FontAwesomeModule,
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: httpLoaderFactory,
+    //     deps: [HttpClient]
+    //   }
+    // })
+  ],
+  providers: []
 })
 export class CoreModule {
   constructor(

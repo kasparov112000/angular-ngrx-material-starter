@@ -9,12 +9,19 @@ import {
 
 import { State } from '../examples.state';
 
+// -- SharedModule for Standalone components imports
+import { SharedModule } from '../../../shared/shared.module';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'anms-examples',
+  imports: [SharedModule, RouterOutlet, RouterModule],
   templateUrl: './examples.component.html',
   styleUrls: ['./examples.component.scss'],
   animations: [routeAnimations],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true
 })
 export class ExamplesComponent implements OnInit {
   isAuthenticated$: Observable<boolean>;
@@ -34,9 +41,13 @@ export class ExamplesComponent implements OnInit {
     { link: 'authenticated', label: 'anms.examples.menu.auth', auth: true }
   ];
 
-  constructor(private store: Store<State>) {}
+  constructor(private readonly store: Store<State>, private readonly router: Router) {}
 
   ngOnInit(): void {
     this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
+  }
+  // -- navigate to link
+  navigateTo(link: string) {
+    this.router.navigate([link]);
   }
 }

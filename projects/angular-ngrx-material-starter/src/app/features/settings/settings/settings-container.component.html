@@ -87,7 +87,7 @@
           </mat-label>
           <mat-slide-toggle
             [checked]="settings.elementsAnimations"
-            (change)="onElementsAnimationsToggle($event)">
+            (change)="onElementsAnimationsToggle({ checked: $event })">
           </mat-slide-toggle>
         </div>
       </div>

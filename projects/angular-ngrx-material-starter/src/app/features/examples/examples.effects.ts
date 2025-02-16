@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ActivationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -15,6 +15,18 @@ import { actionSettingsChangeLanguage } from '../../core/settings/settings.actio
 
 @Injectable()
 export class ExamplesEffects {
+
+
+  /*
+   *
+   * @INJECT
+   */
+  private actions$ = inject(Actions);
+  private router = inject(Router);
+  private store = inject(Store<AppState>);
+  private titleService = inject(TitleService);
+  private translateService = inject(TranslateService);
+  
   setTranslateServiceLanguage = createEffect(
     () => () =>
       this.store.pipe(
@@ -22,7 +34,7 @@ export class ExamplesEffects {
         distinctUntilChanged(),
         tap((language) => this.translateService.use(language))
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   setTitle = createEffect(
@@ -40,14 +52,8 @@ export class ExamplesEffects {
           );
         })
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
-  constructor(
-    private actions$: Actions,
-    private store: Store<AppState>,
-    private translateService: TranslateService,
-    private router: Router,
-    private titleService: TitleService
-  ) {}
+  constructor() {}
 }

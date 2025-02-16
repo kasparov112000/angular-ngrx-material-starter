@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, debounceTime, map, switchMap, tap } from 'rxjs/operators';
@@ -16,6 +16,15 @@ export const STOCK_MARKET_KEY = 'EXAMPLES.STOCKS';
 
 @Injectable()
 export class StockMarketEffects {
+
+  /*
+   *
+   * @INJECT
+   */
+  private actions$ = inject(Actions);
+  private  localStorageService = inject(LocalStorageService);
+  private  service = inject(StockMarketService); 
+
   retrieveStock = createEffect(() => ({ debounce = 500 } = {}) =>
     this.actions$.pipe(
       ofType(actionStockMarketRetrieve),
@@ -31,11 +40,8 @@ export class StockMarketEffects {
           catchError((error) => of(actionStockMarketRetrieveError({ error })))
         )
       )
-    )
+    ),
+    { dispatch: false, allowSignalWrites: true }
   );
-  constructor(
-    private actions$: Actions,
-    private localStorageService: LocalStorageService,
-    private service: StockMarketService
-  ) {}
+  constructor() {}
 }

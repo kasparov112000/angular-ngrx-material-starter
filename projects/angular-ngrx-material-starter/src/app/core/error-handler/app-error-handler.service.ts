@@ -14,7 +14,7 @@ export class AppErrorHandler extends ErrorHandler {
     super();
   }
 
-  handleError(error: Error | HttpErrorResponse) {
+  override handleError(error: Error | HttpErrorResponse) {
     let displayMessage = 'An error occurred.';
 
     if (!environment.production) {
