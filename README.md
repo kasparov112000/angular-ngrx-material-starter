@@ -3,27 +3,22 @@
 Originally created by [@tomastrajan](https://twitter.com/tomastrajan)
 Modernized and enhanced for Angular 19 by [Hipolito Nunez](https://github.com/kasparov112000)
 
-[![license](https://img.shields.io/github/license/tomastrajan/angular-ngrx-material-starter.svg)](https://github.com/kasparov112000/angular-ngrx-material-starter/blob/master/LICENSE) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-
-## Project Revival & Modern Features
-
-This project has been completely revitalized and upgraded to leverage all the latest features that Angular 19 has to offer. The modernization effort includes:
-
-- Upgraded to Angular 19 with standalone components
-- Implemented modern Angular features and best practices
-- Enhanced performance optimizations
-- Updated all dependencies to their latest versions
-- Modernized build system and tooling
-- Improved developer experience
+[![license](https://img.shields.io/github/license/kasparov112000/angular-ngrx-material-starter.svg)](https://github.com/kasparov112000/angular-ngrx-material-starter/blob/master/LICENSE) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## Table of Content
 
+- [Live Demo](#live-demo)
 - [Getting Started](#getting-started)
-- [Useful Commands](#useful-commands)
+- [Development Tools & Commands](#development-tools--commands)
 - [Features](#features)
-- [Stack](#stack)
+- [Technology Stack](#technology-stack)
+- [Troubleshooting](#troubleshooting)
+- [Contributors](#contributors)
 
-## Getting started
+## Live Demo
+[View the live demo](https://github.com/kasparov112000/angular-ngrx-material-starter)
+
+## Getting Started
 
 ```bash
 git clone https://github.com/kasparov112000/angular-ngrx-material-starter.git
@@ -62,25 +57,6 @@ npm start
   - Linting
   - Testing with coverage
   - Production build with custom deploy URL
-
-### Development Features
-- **Custom Webpack Configuration** (@angular-builders/custom-webpack ^19.0.0)
-- **Font Awesome Integration** (@fortawesome/angular-fontawesome ^1.0.0)
-- **Browser Detection** (browser-detect ^0.2.28)
-- **UUID Generation** (uuid ^11.0.5)
-
-### Code Quality Tools
-- ESLint with specialized Angular plugins
-- TypeScript ESLint integration
-- Prettier code formatting
-- Husky for git hooks
-- Commitlint for conventional commits
-
-### Webpack Configuration
-- Custom webpack configuration support
-- Bundle analysis tools
-- HTML webpack plugin integration
-- Development server with hot reload
 
 ## Features
 
@@ -121,12 +97,11 @@ npm start
   - Progressive Web App (PWA) ready
   - Optimized build system
 
-- **Developer Experience**
-  - Comprehensive testing setup with Cypress
-  - Font Awesome 5 integration
-  - Modern tooling and CLI
-  - Hot Module Replacement
-  - Quick start templates
+### Development Features
+- **Custom Webpack Configuration** (@angular-builders/custom-webpack ^19.0.0)
+- **Font Awesome Integration** (@fortawesome/angular-fontawesome ^1.0.0)
+- **Browser Detection** (browser-detect ^0.2.28)
+- **UUID Generation** (uuid ^11.0.5)
 
 ## Technology Stack
 
@@ -167,21 +142,26 @@ npm start
 - CI/CD pipeline integration
 - Code coverage reporting
 
-## Original Project Credits
+## Troubleshooting
 
-This project was originally created by [Tomas Trajan](https://twitter.com/tomastrajan) and has been modernized while maintaining the spirit of the original implementation. The original project's contributors and their valuable work have been instrumental in creating this foundation.
+- **Blocking at emitting LicenseWebpackPlugin when npm start** - try using [cnpm](https://github.com/cnpm/cnpm) instead of npm
 
-## Modernization Credits
+## Contributors
 
-Modernized and enhanced for Angular 19 by Hipolito Nunez:
+### Project Leads
+- [Tomas Trajan](https://twitter.com/tomastrajan) - Original creator
+- [Hipolito Nunez](https://github.com/kasparov112000) - Angular 19 modernization lead
+
+### Key Contributions
+Hipolito Nunez:
 - Complete upgrade to Angular 19
 - Implementation of modern Angular features
 - Performance optimizations
 - Build system modernization
 - Developer experience improvements
 
-## Contributing
+[Previous contributors list and acknowledgments remain...]
 
-Contributions to further enhance and modernize this project are welcome. Please feel free to submit issues and pull requests.
+## License
 
-[Original contributors list remains as is...]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
