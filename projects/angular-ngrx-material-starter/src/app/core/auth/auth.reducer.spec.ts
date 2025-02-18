@@ -8,7 +8,7 @@ describe('AuthReducer', () => {
   };
 
   it('should return default state', () => {
-    const action = {} as any;
+    const action = {} as never;
     const state = authReducer(undefined, action);
 
     expect(state).toBe(initialState);

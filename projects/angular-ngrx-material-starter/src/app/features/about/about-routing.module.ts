@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: AboutComponent,
-    data: { title: 'anms.menu.about' }
+    data: { title: 'anms.menu.about', animationsType: 'ALL' }
   }
 ];
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Action, select, Store } from '@ngrx/store';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { tap, withLatestFrom } from 'rxjs/operators';
@@ -13,6 +13,15 @@ export const TODOS_KEY = 'EXAMPLES.TODOS';
 
 @Injectable()
 export class TodosEffects {
+
+  /*
+   *
+   * @INJECT
+   */
+  private actions$ = inject(Actions);
+  private store = inject(Store<State>);
+  private  localStorageService = inject(LocalStorageService);
+
   persistTodos = createEffect(
     () =>
       this.actions$.pipe(
@@ -27,12 +36,8 @@ export class TodosEffects {
           this.localStorageService.setItem(TODOS_KEY, todos)
         )
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
-  constructor(
-    private actions$: Actions,
-    private store: Store<State>,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor() {}
 }

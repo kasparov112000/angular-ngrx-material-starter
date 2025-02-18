@@ -1,5 +1,5 @@
 import browser from 'browser-detect';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -13,25 +13,36 @@ import {
   selectIsAuthenticated,
   selectSettingsStickyHeader,
   selectSettingsLanguage,
-  selectEffectiveTheme
+  selectEffectiveTheme,
+  CoreModule
 } from '../core/core.module';
 import {
   actionSettingsChangeAnimationsPageDisabled,
   actionSettingsChangeLanguage
 } from '../core/settings/settings.actions';
-
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { MatSidenav } from '@angular/material/sidenav';
+import { SharedModule } from '../shared/shared.module';
 @Component({
-  selector: 'anms-root',
+  selector: 'app-lbt-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [routeAnimations]
+  animations: [routeAnimations],
+  imports: [
+    SharedModule,
+    CoreModule,
+    RouterOutlet,
+    AsyncPipe,
+    RouterLink,
+  ]
 })
 export class AppComponent implements OnInit {
   isProd = env.production;
   envName = env.envName;
   version = env.versions.app;
   year = new Date().getFullYear();
-  logo = require('../../assets/logo.png').default;
+  logo = './assets/logo.png';
   languages = ['en', 'de', 'sk', 'fr', 'es', 'pt-br', 'zh-cn', 'he'];
   navigation = [
     { link: 'about', label: 'anms.menu.about' },
@@ -48,40 +59,46 @@ export class AppComponent implements OnInit {
   language$: Observable<string>;
   theme$: Observable<string>;
 
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+
   constructor(
-    private store: Store,
-    private storageService: LocalStorageService
+    private readonly _store: Store,
+    private readonly _storageService: LocalStorageService
   ) {}
+
+  toggleSidenav() {
+    this.sidenav.toggle();
+  }
 
   private static isIEorEdgeOrSafari() {
     return ['ie', 'edge', 'safari'].includes(browser().name);
   }
 
   ngOnInit(): void {
-    this.storageService.testLocalStorage();
+    this._storageService.testLocalStorage();
     if (AppComponent.isIEorEdgeOrSafari()) {
-      this.store.dispatch(
+      this._store.dispatch(
         actionSettingsChangeAnimationsPageDisabled({
           pageAnimationsDisabled: true
         })
       );
     }
 
-    this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
-    this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
-    this.language$ = this.store.pipe(select(selectSettingsLanguage));
-    this.theme$ = this.store.pipe(select(selectEffectiveTheme));
+    this.isAuthenticated$ = this._store.pipe(select(selectIsAuthenticated));
+    this.stickyHeader$ = this._store.pipe(select(selectSettingsStickyHeader));
+    this.language$ = this._store.pipe(select(selectSettingsLanguage));
+    this.theme$ = this._store.pipe(select(selectEffectiveTheme));
   }
 
   onLoginClick() {
-    this.store.dispatch(authLogin());
+    this._store.dispatch(authLogin());
   }
 
   onLogoutClick() {
-    this.store.dispatch(authLogout());
+    this._store.dispatch(authLogout());
   }
 
   onLanguageSelect({ value: language }) {
-    this.store.dispatch(actionSettingsChangeLanguage({ language }));
+    this._store.dispatch(actionSettingsChangeLanguage({ language }));
   }
 }

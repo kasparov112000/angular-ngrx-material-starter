@@ -10,11 +10,11 @@ export class GoogleAnalyticsEffects {
       this.router.events.pipe(
         filter((event) => event instanceof NavigationEnd),
         tap((event: NavigationEnd) => {
-          (<any>window).ga('set', 'page', event.urlAfterRedirects);
-          (<any>window).ga('send', 'pageview');
+          (window as any).ga('set', 'page', event.urlAfterRedirects);
+          (window as any).ga('send', 'pageview');
         })
       ),
-    { dispatch: false }
+    { dispatch: false, allowSignalWrites: true }
   );
 
   constructor(private router: Router) {}

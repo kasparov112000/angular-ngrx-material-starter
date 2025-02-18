@@ -17,7 +17,7 @@ export class GraphQLModule {
       link: httpLink.create({ uri }),
       cache: new InMemoryCache(),
       resolvers: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
+         
         Post: {
           async isPublic(r, args, ctx) {
             console.log({ r, args, ctx });

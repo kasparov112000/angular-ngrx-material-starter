@@ -1,25 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { routes } from './app-routing.module';
 
-import { CoreModule } from './core/core.module';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app/app.component';
-
-@NgModule({
-  imports: [
-    // angular
-    BrowserAnimationsModule,
-    BrowserModule,
-
-    // core
-    CoreModule,
-
-    // app
-    AppRoutingModule
-  ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
-})
-export class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideStore({}),
+    provideEffects([]),
+    provideRouter(routes),
+    provideStore({}),  // Add this
+    provideEffects([]), // Add this if using effects
+    // other providers...
+  ]
+};

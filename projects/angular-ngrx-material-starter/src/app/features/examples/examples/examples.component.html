@@ -1,25 +1,33 @@
-<nav mat-tab-nav-bar class="d-none d-sm-flex">
-  <a mat-tab-link
-     *ngFor="let e of examples"
-     [routerLink]="e.link"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive"
-     [disabled]="e.auth && !(isAuthenticated$ | async)">
-    {{e.label | translate}}
-  </a>
-</nav>
+<!-- examples.component.html -->
+<div class="container">
+  <!-- Tab navigation for desktop -->
+  <mat-tab-nav-panel #tabPanel>
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="d-none d-sm-flex">
+      <a mat-tab-link
+         *ngFor="let e of examples"
+         [routerLink]="e.link"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive"
+         [disabled]="e.auth && !(isAuthenticated$ | async)">
+        {{e.label | translate}}
+      </a>
+    </nav>
+  </mat-tab-nav-panel>
 
-<nav class="nav-responsive d-sm-none d-flex justify-content-center">
+  <!-- Dropdown for mobile -->
+  <nav class="nav-responsive d-sm-none d-flex justify-content-center">
     <mat-select [placeholder]="'anms.examples.title' | translate" [value]="'todos'">
       <mat-option *ngFor="let e of examples"
-        [value]="e"
-        [routerLink]="e.link"
+        [value]="e.link"
+        (click)="navigateTo(e.link)"
         [disabled]="e.auth && !(isAuthenticated$ | async)">
-          {{e.label | translate}}
+        {{e.label | translate}}
       </mat-option>
     </mat-select>
-</nav>
+  </nav>
 
-<div [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.path">
-  <router-outlet #o="outlet"></router-outlet>
+  <!-- Content with router outlet -->
+  <div [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.path">
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
 </div>

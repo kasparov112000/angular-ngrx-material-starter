@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
+// @import '@angular/material/theming';
 
 @import '../../../../../styles-variables';
 
@@ -8,22 +8,22 @@
   $warn: map-get($theme, warn);
 
   .error {
-    color: mat.get-color-from-palette($warn, default-contrast);
-    background-color: mat.get-color-from-palette($warn);
+    color: mat.m2-get-color-from-palette($warn, default-contrast);
+    background-color: mat.m2-get-color-from-palette($warn);
   }
 
   .information {
-    color: mat.get-color-from-palette($accent, default-contrast);
-    background-color: mat.get-color-from-palette($accent);
+    color: mat.m2-get-color-from-palette($accent, default-contrast);
+    background-color: mat.m2-get-color-from-palette($accent);
   }
 
   .success {
-    color: mat.get-color-from-palette($success-colors, default-contrast);
-    background-color: mat.get-color-from-palette($success-colors);
+    color: mat.m2-get-color-from-palette($success-colors, default-contrast);
+    background-color: mat.m2-get-color-from-palette($success-colors);
   }
 
   .warning {
-    color: mat.get-color-from-palette($warning-colors, default-contrast);
-    background-color: mat.get-color-from-palette($warning-colors);
+    color: mat.m2-get-color-from-palette($warning-colors, default-contrast);
+    background-color: mat.m2-get-color-from-palette($warning-colors);
   }
 }

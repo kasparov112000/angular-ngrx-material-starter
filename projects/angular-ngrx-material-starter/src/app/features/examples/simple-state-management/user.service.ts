@@ -1,7 +1,13 @@
 import { v4 as uuid } from 'uuid';
 import { Injectable } from '@angular/core';
-import { Model, ModelFactory } from '@angular-extensions/model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+export interface User {
+  id: string;
+  username: string;
+  name: string;
+  surname: string;
+}
 
 const INITIAL_DATA: User[] = [
   { id: uuid(), username: 'rockets', name: 'Elon', surname: 'Musk' },
@@ -11,45 +17,32 @@ const INITIAL_DATA: User[] = [
 
 @Injectable()
 export class UserService {
-  users$: Observable<User[]>;
-
-  private model: Model<User[]>;
-
-  constructor(private modelFactory: ModelFactory<User[]>) {
-    this.model = this.modelFactory.create([...INITIAL_DATA]);
-    this.users$ = this.model.data$;
-  }
+  private usersSubject = new BehaviorSubject<User[]>([...INITIAL_DATA]);
+  users$: Observable<User[]> = this.usersSubject.asObservable();
 
   addUser(user: Partial<User>) {
-    const users = this.model.get();
+    const users = this.usersSubject.getValue();
+    const newUser = { ...user, id: uuid() } as User;
 
-    users.push({ ...user, id: uuid() } as User);
-
-    this.model.set(users);
+    this.usersSubject.next([...users, newUser]);
   }
 
   updateUser(user: User) {
-    const users = this.model.get();
+    const users = this.usersSubject.getValue();
+    const updatedUsers = users.map(u => u.id === user.id ? user : u);
 
-    const indexToUpdate = users.findIndex((u) => u.id === user.id);
-    users[indexToUpdate] = user;
-
-    this.model.set(users);
+    this.usersSubject.next(updatedUsers);
   }
 
   removeUser(id: string) {
-    const users = this.model.get();
+    const users = this.usersSubject.getValue();
+    const filteredUsers = users.filter(user => user.id !== id);
 
-    const indexToRemove = users.findIndex((user) => user.id === id);
-    users.splice(indexToRemove, 1);
-
-    this.model.set(users);
+    this.usersSubject.next(filteredUsers);
   }
-}
 
-export interface User {
-  id: string;
-  username: string;
-  name: string;
-  surname: string;
+  // Optional: Get current value without subscribing
+  getCurrentUsers(): User[] {
+    return this.usersSubject.getValue();
+  }
 }

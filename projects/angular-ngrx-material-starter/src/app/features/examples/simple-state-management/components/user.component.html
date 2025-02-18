@@ -14,12 +14,8 @@
           [ngClass]="routeAnimationsElements"
         >
           <mat-card-header>
-            <img
-              mat-card-avatar
-              src="https://source.unsplash.com/200x200/?{{ user.username }}"
-            />
             <mat-card-title>{{ user.name }} {{ user.surname }}</mat-card-title>
-            <mat-card-subtitle>@{{ user.username }}</mat-card-subtitle>
+            <mat-card-subtitle>&#64;{{ user.username }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-actions>
             <button mat-button (click)="editUser(user)">Edit</button>
@@ -40,7 +36,7 @@
             formControlName="username"
           />
           <mat-error *ngIf="userForm.get('username').hasError('minlength')">
-            {{'anms.examples.simple-state-management.validator.minlength' | translate:{minlength: userForm.get('username').errors.minlength.requiredLength} }}
+            {{'anms.examples.simple-state-management.validator.minlength' | translate:{minlength: userForm.get('username').errors['minlength'].requiredLength} }}
           </mat-error>
           <mat-error *ngIf="userForm.get('username').hasError('required')">
             {{'anms.examples.simple-state-management.validator.required' | translate}}
@@ -55,7 +51,7 @@
             formControlName="name"
           />
           <mat-error *ngIf="userForm.get('name').hasError('minlength')">
-            {{'anms.examples.simple-state-management.validator.minlength' | translate:{minlength: userForm.get('name').errors.minlength.requiredLength} }}
+            {{'anms.examples.simple-state-management.validator.minlength' | translate:{minlength: userForm.get('name').errors['minlength'].requiredLength} }}
           </mat-error>
           <mat-error *ngIf="userForm.get('name').hasError('required')">
             {{'anms.examples.simple-state-management.validator.required' | translate}}
@@ -70,7 +66,8 @@
             formControlName="surname"
           />
           <mat-error *ngIf="userForm.get('surname').hasError('minlength')">
-            {{'anms.examples.simple-state-management.validator.minlength' | translate:{minlength: userForm.get('surname').errors.minlength.requiredLength} }}
+            {{'anms.examples.simple-state-management.validator.minlength' | translate:{minlength: userForm.get('surname').errors['minlength'].requiredLength
+          } }}
           </mat-error>
           <mat-error *ngIf="userForm.get('surname').hasError('required')">
             {{'anms.examples.simple-state-management.validator.required' | translate}}
@@ -93,7 +90,7 @@
       <p>{{ 'anms.examples.simple-state-management.text2' | translate }}</p>
       <p>
         {{ 'anms.examples.simple-state-management.text3' | translate }}
-        <code>@angular-extensions/model</code>
+        <code>&#64;angular-extensions/model</code>
       </p>
       <p>{{ 'anms.examples.simple-state-management.text4' | translate }}</p>
       <p>
@@ -104,8 +101,8 @@
       </p>
       <p>
         {{ 'anms.examples.simple-state-management.text7' | translate }}
-        <code>ng add @angular-extensions/model</code> &
-        <code>ng g @angular-extensions/model:model examples/user --items</code>
+        <code>ng add &#64;angular-extensions/model</code> &
+        <code>ng g &#64;angular-extensions/model:model examples/user --items</code>
       </p>
     </div>
   </div>

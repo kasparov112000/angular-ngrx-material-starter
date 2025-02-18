@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -8,6 +8,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { ExamplesComponent } from './examples.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateModule } from '@ngx-translate/core';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('ExamplesComponent', () => {
   let component: ExamplesComponent;
@@ -15,24 +16,23 @@ describe('ExamplesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        SharedModule,
+    declarations: [ExamplesComponent],
+    imports: [SharedModule,
         NoopAnimationsModule,
         RouterTestingModule,
-        TranslateModule.forRoot()
-      ],
-      providers: [
+        TranslateModule.forRoot()],
+    providers: [
         provideMockStore({
-          initialState: {
-            auth: {
-              isAuthenticated: false
+            initialState: {
+                auth: {
+                    isAuthenticated: false
+                }
             }
-          }
-        })
-      ],
-      declarations: [ExamplesComponent]
-    }).compileComponents();
+        }),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

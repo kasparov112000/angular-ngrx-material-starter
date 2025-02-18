@@ -4,5 +4,8 @@ import { ExamplesState, selectExamples } from '../examples.state';
 
 export const selectStockMarket = createSelector(
   selectExamples,
-  (state: ExamplesState) => state.stocks
+  (state: ExamplesState) => {
+    console.log('Stock market state:', state);
+    return state.stocks;
+  }
 );

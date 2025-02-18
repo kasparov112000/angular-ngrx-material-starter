@@ -43,7 +43,7 @@
         <div class="row">
           <mat-form-field class="col">
             <input matInput placeholder="{{ 'anms.examples.crud.placeholder1' | translate }}"
-              formControlName="title" required autofocus>
+              formControlName="title" required>
             <mat-error *ngIf="bookFormGroup.get('title').invalid">
               {{ 'anms.examples.crud.placeholder1' | translate }}
               {{ 'anms.examples.crud.error' | translate }}
@@ -92,7 +92,7 @@
 
         <ng-template #noSelectedBookTmpl>
           <p [ngClass]="routeAnimationsElements">
-            {{'anms.examples.crud.text' | translate }} <code>@ngrx/entity</code>.
+            {{'anms.examples.crud.text' | translate }} <code>&#64;ngrx/entity</code>.
           </p>
         </ng-template>
       </ng-container>

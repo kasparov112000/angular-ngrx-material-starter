@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
+// @import '@angular/material/theming';
 
 @mixin anms-about-component-theme($theme) {
   $primary: map-get($theme, primary);
@@ -9,15 +9,15 @@
 
   anms-about {
     .background {
-      color: mat.get-color-from-palette($foreground, text);
-      background-color: mat.get-color-from-palette($background, background);
+      color: mat.m2-get-color-from-palette($foreground, text);
+      background-color: mat.m2-get-color-from-palette($background, background);
 
       .gradient {
         &::before {
           background: linear-gradient(
             to bottom,
-            mat.get-color-from-palette($background, background, 0) 0%,
-            mat.get-color-from-palette($background, background, 1) 100%
+            mat.m2-get-color-from-palette($background, background, 0) 0%,
+            mat.m2-get-color-from-palette($background, background, 1) 100%
           );
         }
       }
@@ -26,13 +26,13 @@
     .follow-releases,
     .contributors {
       p {
-        background-color: mat.get-color-from-palette($background, background);
+        background-color: mat.m2-get-color-from-palette($background, background);
 
         a {
-          color: mat.get-color-from-palette($accent);
+          color: mat.m2-get-color-from-palette($accent);
 
           &:hover {
-            color: mat.get-color-from-palette($accent, darker);
+            color: mat.m2-get-color-from-palette($accent, darker);
           }
         }
       }
@@ -40,7 +40,7 @@
 
     .contributors {
       img {
-        border-color: mat.get-color-from-palette($background, background) !important;
+        border-color: mat.m2-get-color-from-palette($background, background) !important;
       }
     }
   }

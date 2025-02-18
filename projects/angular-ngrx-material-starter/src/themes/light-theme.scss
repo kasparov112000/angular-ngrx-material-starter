@@ -1,9 +1,9 @@
 @use '@angular/material' as mat;
-$anms-light-primary: mat.define-palette(mat.$grey-palette, 200, 500, 300);
-$anms-light-accent: mat.define-palette(mat.$brown-palette, 200);
-$anms-light-warn: mat.define-palette(mat.$deep-orange-palette, 200);
+$anms-light-primary: mat.m2-define-palette(mat.$m2-grey-palette, 200, 500, 300);
+$anms-light-accent: mat.m2-define-palette(mat.$m2-brown-palette, 200);
+$anms-light-warn: mat.m2-define-palette(mat.$m2-deep-orange-palette, 200);
 
-$anms-light-theme: mat.define-light-theme(
+$anms-light-theme: mat.m2-define-light-theme(
   $anms-light-primary,
   $anms-light-accent,
   $anms-light-warn

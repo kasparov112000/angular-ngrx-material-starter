@@ -1,7 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  inject
+} from '@angular/core';
 import { Validators, UntypedFormBuilder } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { filter, debounceTime, take } from 'rxjs/operators';
+import { filter, debounceTime, take, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
@@ -14,13 +19,27 @@ import { actionFormReset, actionFormUpdate } from '../form.actions';
 import { selectFormState } from '../form.selectors';
 import { Form } from '../form.model';
 
+// -- SharedModule for Standalone components imports
+import { SharedModule } from '../../../../shared/shared.module';
+
 @Component({
-  selector: 'anms-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'anms-form',
+    imports: [SharedModule],
+    templateUrl: './form.component.html',
+    styleUrls: ['./form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    
 })
 export class FormComponent implements OnInit {
+  /*
+   *
+   * @INJECT
+   */
+  private store = inject(Store);
+  private fb = inject(UntypedFormBuilder);
+  private translate = inject(TranslateService);
+  private notificationService = inject(NotificationService);
+
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
   form = this.fb.group({
@@ -43,24 +62,34 @@ export class FormComponent implements OnInit {
 
   formValueChanges$: Observable<Form>;
 
-  constructor(
-    private fb: UntypedFormBuilder,
-    private store: Store,
-    private translate: TranslateService,
-    private notificationService: NotificationService
-  ) {}
+  constructor() {}
 
   ngOnInit() {
+    
+
+    // this.formValueChanges$ = this.form.valueChanges.pipe(
+    //   debounceTime(500),
+    //   filter((form: Form) => form.autosave)
+    // );
     this.formValueChanges$ = this.form.valueChanges.pipe(
       debounceTime(500),
-      filter((form: Form) => form.autosave)
+      filter((form: Form) => form.autosave),
+      tap((form: Form) => { // Use tap to dispatch the action
+        // console.log("🚀 ~ FormComponent ~ tap ~ form:", form)
+        this.update(form);
+      })
     );
     this.store
       .pipe(select(selectFormState), take(1))
-      .subscribe((form) => this.form.patchValue(form.form));
+      .subscribe((form) => {
+        
+        this.form.patchValue(form.form)
+      });
   }
 
   update(form: Form) {
+    console.log("🚀 ~ FormComponent ~ update ~ form:", form)
+    console.log("🚀 ~ FormComponent ~ update ~ form:", this.form.value)
     this.store.dispatch(actionFormUpdate({ form }));
   }
 
