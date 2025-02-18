@@ -10,9 +10,8 @@ import {
   provideHttpClient,
   withFetch,
   withInterceptors,
-  withInterceptorsFromDi
 } from '@angular/common/http';
-import { provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { TranslateModule, TranslateLoader, MissingTranslationHandler } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';

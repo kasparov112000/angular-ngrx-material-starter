@@ -1,20 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import {
-  HttpClient,
-  HTTP_INTERCEPTORS,
-  provideHttpClient,
-  withInterceptorsFromDi
-} from '@angular/common/http';
-import {
-  StoreRouterConnectingModule,
-  RouterStateSerializer
-} from '@ngrx/router-store';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+  StoreRouterConnectingModule} from '@ngrx/router-store';
+import { TranslateModule } from '@ngx-translate/core';
 import {
   FaIconLibrary,
   FontAwesomeModule
@@ -29,15 +17,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { environment } from '../../environments/environment';
 
 import {
   type AppState,
-  reducers,
-  metaReducers,
   selectRouterState
 } from './core.state';
-import { AuthEffects } from './auth/auth.effects';
 import { selectIsAuthenticated, selectAuth } from './auth/auth.selectors';
 import { authLogin, authLogout } from './auth/auth.actions';
 import { AuthGuardService } from './auth/auth-guard.service';
@@ -47,13 +31,8 @@ import {
   routeAnimations
 } from './animations/route.animations';
 import { AnimationsService } from './animations/animations.service';
-import { AppErrorHandler } from './error-handler/app-error-handler.service';
-import { CustomSerializer } from './router/custom-serializer';
 import { LocalStorageService } from './local-storage/local-storage.service';
-import { HttpErrorInterceptor } from './http-interceptors/http-error.interceptor';
-import { GoogleAnalyticsEffects } from './google-analytics/google-analytics.effects';
 import { NotificationService } from './notifications/notification.service';
-import { SettingsEffects } from './settings/settings.effects';
 import {
   selectSettingsLanguage,
   selectEffectiveTheme,

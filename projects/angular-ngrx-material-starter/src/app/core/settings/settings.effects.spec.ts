@@ -73,20 +73,10 @@ describe('SettingsEffects', () => {
         hour: 12
       };
       store.pipe.and.returnValue(of(settings));
-      const persistAction = actionSettingsChangeTheme({ theme: 'DEFAULT' });
-      const source = cold('a', { a: persistAction });
-      const actions = new Actions(source);
-      const effect = new SettingsEffects(
-        actions,
-        store,
-        router,
-        overlayContainer,
-        localStorageService,
-        titleService,
-        animationsService,
-        translateService,
-        ngZone
-      );
+
+
+
+      const effect = new SettingsEffects();
 
       effect.persistSettings.subscribe(() => {
         expect(localStorageService.setItem).toHaveBeenCalledWith(
